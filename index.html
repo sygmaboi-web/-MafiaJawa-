@@ -1,272 +1,95 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mafia Jawa - Ninefoosion</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <header>
-        <nav class="navbar">
-            <a href="#" class="nav-branding">MAFIA JAWA</a>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#deskripsi" class="nav-link" data-target="deskripsi">Deskripsi Produk</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#kasir" class="nav-link" data-target="kasir">Mesin Kasir</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#penjualan" class="nav-link" data-target="penjualan">Hasil Penjualan</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="deskripsi" class="page-content active">
-            <h1>Produk Kami</h1>
-            <div class="product-container">
-                <div class="product-card">
-                    <img src="corndogbesar.jpg" alt="Corndog Besar">
-                    <h2>Big Boss</h2>
-                    <p>Corndog sosis jumbo dengan adonan rahasia yang renyah di luar dan lembut di dalam.</p>
-                    <p class="harga">Rp 7.000</p>
-                </div>
-                <div class="product-card">
-                    <img src="corndogkecil.jpg" alt="Corndog Kecil">
-                    <h2>Small Boss</h2>
-                    <p>Ukuran pas untuk camilan, dengan sosis berkualitas dan topping pilihan.</p>
-                    <p class="harga">Rp 4.000</p>
-                </div>
-                <div class="product-card">
-                    <img src="redpoison.jpg" alt="Red Poison">
-                    <h2>Red Poison</h2>
-                    <p>Minuman soda merah menyegarkan dengan sentuhan rasa buah rahasia.</p>
-                    <p class="harga">Rp 4.000</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="kasir" class="page-content">
-            <h1>Mesin Kasir</h1>
-            <div class="cashier-container">
-                <p>Fitur kasir sedang dalam pengembangan. Silakan kembali lagi nanti!</p>
-                </div>
-        </section>
-
-        <section id="penjualan" class="page-content">
-            <h1>Laporan Penjualan</h1>
-            <div class="sales-container">
-                <p>Data penjualan akan ditampilkan di sini. Fitur ini juga sedang dibuat.</p>
-                </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="id">
-<head>
   <meta charset="UTF-8">
-  <title>Mafia Jawa - Kasir</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: white;
-      color: #003366;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      text-align: center;
-      background: linear-gradient(90deg, #0077cc, #00aa55);
-      padding: 20px;
-      color: white;
-    }
-
-    header img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      color: #0077cc;
-    }
-
-    input {
-      padding: 8px;
-      margin: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      padding: 8px 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      color: white;
-      font-weight: bold;
-    }
-
-    .btn-green { background: #00aa55; }
-    .btn-blue { background: #0077cc; }
-    .btn-red { background: #cc0000; }
-
-    .box {
-      background: #f0f9ff;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 5px 0;
-      padding: 6px;
-      background: #f5faff;
-      border-radius: 6px;
-    }
-
-    #kasirSection, #penjualanSection {
-      display: none;
-    }
-
-    #loginBox {
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
+  <title>Ninefoosion - Mafia Jawa</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Navigasi -->
   <header>
-    <h1>Mafia Jawa</h1>
-    <img src="poster.jpg" alt="Poster Mafia Jawa">
+    <h1 class="logo">🍴 Mafia Jawa - Ninefoosion</h1>
+    <nav>
+      <ul>
+        <li><a href="#deskripsi">Deskripsi</a></li>
+        <li><a href="#kasir" onclick="loginKasir()">Mesin Kasir</a></li>
+        <li><a href="#penjualan" onclick="loginPenjualan()">Hasil Penjualan</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <!-- Login Password -->
-    <div id="loginBox" class="box">
-      <h2>Login untuk Akses Kasir</h2>
-      <input type="password" id="passwordInput" placeholder="Masukkan Password">
-      <button class="btn-blue" onclick="login()">Masuk</button>
-      <p id="loginMsg" style="color:red;"></p>
+  <!-- Poster -->
+  <section class="poster">
+    <img src="poster.jpeg" alt="Poster Ninefoosion">
+  </section>
+
+  <!-- Deskripsi Produk -->
+  <section id="deskripsi" class="section">
+    <h2>🍟 Produk Kami</h2>
+    <p>Selamat datang di <b>Ninefoosion - Mafia Jawa</b>! Kami menjual corndog lezat dengan dua pilihan ukuran, dan minuman rahasia berwarna merah yang menyegarkan: <b>Red Poison</b>.</p>
+
+    <div class="produk-grid">
+      <div class="produk-card">
+        <img src="corndogkecil.jpg" alt="Small Boss">
+        <h3>Small Boss</h3>
+        <p>Harga: Rp4.000</p>
+        <p>Corndog mini, kriuk di luar lembut di dalam.</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="corndogbesar.jpg" alt="Big Boss">
+        <h3>Big Boss</h3>
+        <p>Harga: Rp7.000</p>
+        <p>Corndog ukuran besar, bikin kenyang puas!</p>
+      </div>
+
+      <div class="produk-card">
+        <img src="redpoison.jpg" alt="Red Poison">
+        <h3>Red Poison</h3>
+        <p>Harga: Rp4.000</p>
+        <p>Minuman bersoda merah dengan resep rahasia ✨</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Mesin Kasir -->
-    <div id="kasirSection" class="section box">
-      <h2>Mesin Kasir</h2>
-      <input type="text" id="namaBarang" placeholder="Nama barang">
-      <input type="number" id="hargaBarang" placeholder="Harga">
-      <button class="btn-green" onclick="tambahBarang()">Tambah</button>
+  <!-- Kasir -->
+  <section id="kasir" class="section hidden">
+    <h2>💰 Mesin Kasir</h2>
+    <div class="kasir-container">
+      <div class="produk-list">
+        <h3>Pilih Produk</h3>
+        <button onclick="addToCart('Small Boss', 4000)">Small Boss - Rp4.000</button>
+        <button onclick="addToCart('Big Boss', 7000)">Big Boss - Rp7.000</button>
+        <button onclick="addToCart('Red Poison', 4000)">Red Poison - Rp4.000</button>
+      </div>
 
-      <h3>Keranjang</h3>
-      <ul id="keranjangList"></ul>
-      <button class="btn-blue" onclick="checkout()">Checkout</button>
+      <div class="keranjang">
+        <h3>Keranjang Belanja</h3>
+        <ul id="cart"></ul>
+        <p><b>Total:</b> Rp<span id="total">0</span></p>
+        <label>Metode Pembayaran:</label>
+        <select id="payment">
+          <option value="Cash">Cash</option>
+          <option value="QRIS">QRIS</option>
+        </select>
+        <img src="qris.jpg" alt="QRIS" class="qris">
+        <button onclick="checkout()">Checkout</button>
+      </div>
     </div>
+    <div id="receipt"></div>
+  </section>
 
-    <!-- Hasil Penjualan -->
-    <div id="penjualanSection" class="section box">
-      <h2>Hasil Penjualan</h2>
-      <ul id="penjualanList"></ul>
-    </div>
-  </main>
+  <!-- Hasil Penjualan -->
+  <section id="penjualan" class="section hidden">
+    <h2>📊 Hasil Penjualan</h2>
+    <ul id="sales-data"></ul>
+    <button onclick="clearSales()">Hapus Semua Data Penjualan</button>
+  </section>
 
-  <script>
-    const PASSWORD = "KELOMPOK1KEREN";
-    let keranjang = [];
-    let penjualan = JSON.parse(localStorage.getItem("penjualan")) || [];
+  <footer>
+    <p>© 2025 Mafia Jawa - Ninefoosion | Market Day SMP Islam Plus Baitulmaal</p>
+  </footer>
 
-    function login() {
-      const input = document.getElementById("passwordInput").value;
-      if (input === PASSWORD) {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("kasirSection").style.display = "block";
-        document.getElementById("penjualanSection").style.display = "block";
-      } else {
-        document.getElementById("loginMsg").textContent = "Password salah!";
-      }
-    }
-
-    function renderKeranjang() {
-      const list = document.getElementById("keranjangList");
-      list.innerHTML = "";
-      keranjang.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.nama} - Rp${item.harga}`;
-        list.appendChild(li);
-      });
-    }
-
-    function renderPenjualan() {
-      const list = document.getElementById("penjualanList");
-      list.innerHTML = "";
-      penjualan.forEach(trx => {
-        const li = document.createElement("li");
-        li.textContent = `Transaksi ${trx.id}: Rp${trx.total} (${trx.items.length} barang)`;
-        list.appendChild(li);
-      });
-    }
-
-    function tambahBarang() {
-      const nama = document.getElementById("namaBarang").value;
-      const harga = parseInt(document.getElementById("hargaBarang").value);
-
-      if (!nama || isNaN(harga)) {
-        alert("Isi nama dan harga dengan benar!");
-        return;
-      }
-
-      keranjang.push({ nama, harga });
-      document.getElementById("namaBarang").value = "";
-      document.getElementById("hargaBarang").value = "";
-      renderKeranjang();
-    }
-
-    function checkout() {
-      if (keranjang.length === 0) {
-        alert("Keranjang masih kosong!");
-        return;
-      }
-
-      const total = keranjang.reduce((a, b) => a + b.harga, 0);
-      const transaksi = {
-        id: Date.now(),
-        items: keranjang,
-        total
-      };
-
-      penjualan.push(transaksi);
-      localStorage.setItem("penjualan", JSON.stringify(penjualan));
-
-      keranjang = [];
-      renderKeranjang();
-      renderPenjualan();
-    }
-
-    // Render awal
-    renderKeranjang();
-    renderPenjualan();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
