@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mafia Jawa - NineFoosion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <h2>Loading Mafia Jawa...</h2>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>🍭 Mafia Jawa</h2>
+        </div>
+        <div class="nav-menu">
+            <button class="nav-btn" onclick="showSection('home')">🏠 Beranda</button>
+            <button class="nav-btn" onclick="showSection('products')">🍴 Produk</button>
+            <button class="nav-btn" onclick="showPasswordModal()">💰 Kasir</button>
+            <button class="nav-btn" onclick="showSalesModal()">📊 Penjualan</button>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero-banner">
+            <div class="banner-content">
+                <h1 class="animated-title">🎪 MAFIA JAWA 🎪</h1>
+                <p class="subtitle">NineFoosion - Market Day SMP Islam Plus Baitulmaal</p>
+                <div class="poster-container">
+                    <div class="main-poster">
+                        <h2>🌟 MENU SPESIAL KAMI 🌟</h2>
+                        <div class="poster-items">
+                            <div class="poster-item">
+                                <img src="corndog.jpg" alt="Corndog" class="poster-img">
+                                <h3>🌭 CORNDOG CRISPY</h3>
+                                <p>Kecil: Rp 4.000 | Besar: Rp 7.000</p>
+                            </div>
+                            <div class="poster-item">
+                                <img src="redpotion.jpg" alt="Red Poison" class="poster-img">
+                                <h3>🧪 RED POISON</h3>
+                                <p>Minuman Rahasia: Rp 4.000</p>
+                            </div>
+                        </div>
+                        <div class="payment-info">
+                            <h3>💳 Metode Pembayaran</h3>
+                            <div class="payment-methods">
+                                <span>💵 Cash</span>
+                                <span>📱 QRIS</span>
+                            </div>
+                            <img src="qris.jpg" alt="QRIS" class="qris-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">🍴 Produk Kami</h2>
+            
+            <div class="product-grid">
+                <!-- Corndog Product -->
+                <div class="product-card corndog-card">
+                    <div class="product-header">
+                        <img src="corndog.jpg" alt="Corndog" class="product-img">
+                        <h3>🌭 CORNDOG CRISPY</h3>
+                    </div>
+                    <div class="product-details">
+                        <div class="price-info">
+                            <span class="size">Kecil: <strong>Rp 4.000</strong></span>
+                            <span class="size">Besar: <strong>Rp 7.000</strong></span>
+                        </div>
+                        <div class="product-description">
+                            <h4>🍳 Cara Pembuatan:</h4>
+                            <ol>
+                                <li>Siapkan sosis berkualitas tinggi</li>
+                                <li>Tusuk dengan stik kayu</li>
+                                <li>Celupkan dalam adonan tepung khusus</li>
+                                <li>Goreng dalam minyak panas hingga golden brown</li>
+                                <li>Sajikan dengan saus pilihan</li>
+                            </ol>
+                            <p><strong>Bahan:</strong> Sosis premium, tepung terigu, telur, susu, bumbu rahasia</p>
+                        </div>
+                        <div class="stock-info">
+                            <span>📦 Stok Kecil: <span id="corndog-small-stock">50</span></span>
+                            <span>📦 Stok Besar: <span id="corndog-big-stock">30</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Red Poison Product -->
+                <div class="product-card poison-card">
+                    <div class="product-header">
+                        <img src="redpotion.jpg" alt="Red Poison" class="product-img">
+                        <h3>🧪 RED POISON</h3>
+                    </div>
+                    <div class="product-details">
+                        <div class="price-info">
+                            <span class="price">Harga: <strong>Rp 4.000</strong></span>
+                        </div>
+                        <div class="product-description secret">
+                            <h4>🤫 Minuman Rahasia</h4>
+                            <div class="secret-box">
+                                <p>🔮 Ramuan misterius dengan rasa yang menggoda</p>
+                                <p>🌶️ Sensasi yang tak terlupakan</p>
+                                <p>❤️ Warna merah yang memikat</p>
+                                <p><em>*Resep adalah rahasia toko</em></p>
+                            </div>
+                        </div>
+                        <div class="stock-info">
+                            <span>📦 Stok: <span id="redpoison-stock">40</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('passwordModal')">&times;</span>
+            <h2>🔐 Masukkan Password</h2>
+            <input type="password" id="passwordInput" placeholder="Password kasir...">
+            <button onclick="checkPassword()">Masuk</button>
+        </div>
+    </div>
+
+    <!-- Cashier Section -->
+    <section id="cashier" class="section">
+        <div class="container">
+            <h2 class="section-title">💰 Mesin Kasir</h2>
+            <div class="cashier-container">
+                <div class="cart-section">
+                    <h3>🛒 Keranjang Belanja</h3>
+                    <div id="cart-items"></div>
+                    <div class="cart-total">
+                        <h4>Total: Rp <span id="cart-total">0</span></h4>
+                    </div>
+                </div>
+                
+                <div class="products-section">
+                    <h3>Pilih Produk:</h3>
+                    <div class="cashier-products">
+                        <div class="cashier-item" onclick="addToCart('corndog-small', 'Corndog Kecil', 4000)">
+                            <img src="corndog.jpg" alt="Corndog Kecil">
+                            <h4>Corndog Kecil</h4>
+                            <p>Rp 4.000</p>
+                        </div>
+                        <div class="cashier-item" onclick="addToCart('corndog-big', 'Corndog Besar', 7000)">
+                            <img src="corndog.jpg" alt="Corndog Besar">
+                            <h4>Corndog Besar</h4>
+                            <p>Rp 7.000</p>
+                        </div>
+                        <div class="cashier-item" onclick="addToCart('redpoison', 'Red Poison', 4000)">
+                            <img src="redpotion.jpg" alt="Red Poison">
+                            <h4>Red Poison</h4>
+                            <p>Rp 4.000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-section">
+                <h3>💳 Metode Pembayaran:</h3>
+                <div class="payment-buttons">
+                    <button class="payment-btn" onclick="processPayment('cash')">💵 Cash</button>
+                    <button class="payment-btn" onclick="processPayment('qris')">📱 QRIS</button>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">🛒 Checkout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sales Modal -->
+    <div id="salesModal" class="modal">
+        <div class="modal-content large">
+            <span class="close" onclick="closeModal('salesModal')">&times;</span>
+            <h2>📊 Data Penjualan</h2>
+            <div class="sales-summary">
+                <div class="summary-item">
+                    <h3>Total Penjualan</h3>
+                    <p>Rp <span id="total-sales">0</span></p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Transaksi</h3>
+                    <p><span id="total-transactions">0</span></p>
+                </div>
+            </div>
+            <div id="sales-history"></div>
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('receiptModal')">&times;</span>
+            <div id="receipt-content"></div>
+            <button onclick="printReceipt()">🖨️ Print</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
