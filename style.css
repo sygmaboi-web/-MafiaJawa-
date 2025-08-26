@@ -1,427 +1,129 @@
-:root {
-    --primary-green: #2ecc71;
-    --primary-blue: #3498db;
-    --white: #ffffff;
-    --light-gray: #f4f4f9;
-    --dark-gray: #333;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    --font-main: 'Poppins', sans-serif;
-    --font-display: 'Bebas Neue', cursive;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* Import font untuk tampilan yang lebih menarik */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 body {
-    font-family: var(--font-main);
-    background-color: var(--light-gray);
-    color: var(--dark-gray);
-    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
 }
 
-header {
-    background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
-    color: var(--white);
+/* Styling untuk Header dan Navigasi */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fff;
     padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-header .logo {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    animation: glow 1.5s ease-in-out infinite alternate;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    color: var(--white);
+.nav-branding {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a73e8;
     text-decoration: none;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-nav ul li a.active,
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
 }
 
+.nav-link {
+    text-decoration: none;
+    color: #5f6368;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #1a73e8;
+}
+
+/* Konten Utama */
 main {
     padding: 2rem;
 }
 
-.page {
+/* PENTING: Menyembunyikan semua bagian konten secara default */
+.page-content {
     display: none;
     animation: fadeIn 0.5s ease-in-out;
 }
 
-.page.active {
+/* PENTING: Menampilkan hanya bagian yang aktif */
+.page-content.active {
     display: block;
 }
 
-h1, h2, h3 {
-    font-family: var(--font-display);
-    letter-spacing: 1px;
-    color: var(--primary-blue);
+h1 {
+    color: #1a73e8;
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-h2 {
-    font-size: 3rem;
-}
-
-/* Halaman Deskripsi */
-.poster-container {
-    position: relative;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 3rem auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.poster-img {
-    width: 100%;
-    display: block;
-}
-
-.poster-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: var(--white);
+/* Styling untuk Kartu Produk */
+.product-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-}
-
-.poster-overlay h1 {
-    font-size: 4rem;
-    color: var(--white);
-    margin: 0;
-}
-
-.poster-overlay p {
-    font-size: 1.5rem;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .product-card {
-    background: var(--white);
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 280px;
     padding: 1.5rem;
-    overflow: hidden;
+    text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .product-card img {
     max-width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-bottom: 1rem;
 }
 
-.product-card h3 {
-    font-size: 2rem;
-    color: var(--primary-green);
+.product-card h2 {
+    margin: 0.5rem 0;
+    color: #3c4043;
 }
 
-.product-card .price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--dark-gray);
-    margin-bottom: 1rem;
-}
-
-.product-card .desc {
-    font-size: 0.9rem;
-}
-
-.info-section {
-    background: var(--white);
-    margin: 3rem auto;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    max-width: 800px;
-}
-
-.info-section.payment {
-    text-align: center;
-}
-
-.qris-img {
-    max-width: 250px;
-    margin-top: 1rem;
-}
-
-/* Halaman Kasir */
-.kasir-container {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-.kasir-products {
-    flex: 2;
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-}
-.kasir-keranjang {
-    flex: 1;
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 120px;
-}
-#product-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
-}
-.product-btn {
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(45deg, var(--primary-green), var(--primary-blue));
-    color: var(--white);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.product-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-.product-btn small {
-    display: block;
-    font-size: 0.8rem;
-    opacity: 0.9;
-}
-#cart-items {
-    min-height: 100px;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid var(--light-gray);
-    padding-bottom: 1rem;
-}
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-.cart-item-controls button {
-    background: var(--primary-blue);
-    color: var(--white);
-    border: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-.total-section {
-    text-align: right;
-}
-#cart-total {
-    font-size: 1.8rem;
-    color: var(--primary-green);
-    font-weight: 700;
-}
-#checkout-btn {
-    width: 100%;
-    padding: 1rem;
-    margin-top: 1rem;
-    background: var(--primary-green);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
+.product-card .harga {
     font-size: 1.2rem;
     font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-#checkout-btn:hover {
-    background: #27ae60;
+    color: #e67e22;
 }
 
-/* Halaman Penjualan */
-.penjualan-summary {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-.summary-card {
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    text-align: center;
-}
-.summary-card h4 {
-    margin-bottom: 0.5rem;
-    color: var(--dark-gray);
-}
-.summary-card p {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-}
-#stock-table, #sales-history {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    background: var(--white);
-    box-shadow: var(--shadow);
-}
-#stock-table th, #stock-table td,
-#sales-history th, #sales-history td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-#stock-table th, #sales-history th {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    font-family: var(--font-display);
-    letter-spacing: 1px;
-}
-#sales-history tbody tr:nth-child(even) {
-    background-color: var(--light-gray);
+/* Animasi sederhana */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Modal Styling */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-.modal-content {
-    background: var(--white);
+/* Styling untuk bagian lain */
+.cashier-container, .sales-container {
+    background-color: #fff;
     padding: 2rem;
     border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-.modal-overlay.visible .modal-content {
-    transform: scale(1);
-}
-#password-input {
-    width: 100%;
-    padding: 0.8rem;
-    margin: 1rem 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-#password-submit, #close-struk-btn {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 5px;
-    background: var(--primary-blue);
-    color: var(--white);
-    font-size: 1rem;
-    cursor: pointer;
-}
-.error-message {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    height: 1rem;
-}
-
-/* Struk Modal */
-#struk-content {
-    max-width: 350px;
-    font-family: 'Courier New', Courier, monospace;
-    text-align: left;
-}
-#struk-body {
-    padding-bottom: 1.5rem;
-    border-bottom: 1px dashed var(--dark-gray);
-    margin-bottom: 1.5rem;
-}
-#struk-body h3, #struk-body h4 {
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
-    color: var(--dark-gray);
-}
-#struk-body pre {
-    white-space: pre-wrap;
-    font-size: 0.9rem;
-}
-
-/* Animasi */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary-green); }
-    to { text-shadow: 0 0 10px #fff, 0 0 15px #fff, 0 0 20px var(--primary-blue); }
 }
