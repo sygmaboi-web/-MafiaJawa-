@@ -1,129 +1,131 @@
-/* Import font untuk tampilan yang lebih menarik */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background-color: #f0f2f5;
-    color: #333;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(to right, #00b894, #0984e3);
+  color: #fff;
 }
 
-/* Styling untuk Header dan Navigasi */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  color: #2d3436;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.nav-branding {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #1a73e8;
-    text-decoration: none;
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0984e3;
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    margin: 0;
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: #5f6368;
-    font-weight: 400;
-    transition: color 0.3s ease;
+nav a {
+  text-decoration: none;
+  color: #2d3436;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.nav-link:hover {
-    color: #1a73e8;
+nav a:hover {
+  color: #00b894;
 }
 
-/* Konten Utama */
-main {
-    padding: 2rem;
+.poster img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-bottom: 5px solid #fff;
 }
 
-/* PENTING: Menyembunyikan semua bagian konten secara default */
-.page-content {
-    display: none;
-    animation: fadeIn 0.5s ease-in-out;
+.section {
+  padding: 40px;
+  text-align: center;
 }
 
-/* PENTING: Menampilkan hanya bagian yang aktif */
-.page-content.active {
-    display: block;
+.produk-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-h1 {
-    color: #1a73e8;
-    text-align: center;
-    margin-bottom: 2rem;
+.produk-card {
+  background: #fff;
+  color: #2d3436;
+  padding: 20px;
+  border-radius: 15px;
+  width: 250px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
 }
 
-/* Styling untuk Kartu Produk */
-.product-container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+.produk-card:hover {
+  transform: scale(1.05);
 }
 
-.product-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 280px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.produk-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+.kasir-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.product-card img {
-    max-width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+.produk-list, .keranjang {
+  background: #fff;
+  color: #2d3436;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
 }
 
-.product-card h2 {
-    margin: 0.5rem 0;
-    color: #3c4043;
+button {
+  padding: 10px 15px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 10px;
+  background: #0984e3;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.product-card .harga {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #e67e22;
+button:hover {
+  background: #00b894;
 }
 
-/* Animasi sederhana */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.qris {
+  width: 150px;
+  display: none;
+  margin: 15px auto;
 }
 
-/* Styling untuk bagian lain */
-.cashier-container, .sales-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
+.hidden {
+  display: none;
 }
+
+#receipt {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  color: #2d3436;
+  border-radius: 10px;
+  text-align: left;
+}
+
