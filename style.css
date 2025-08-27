@@ -43,7 +43,7 @@ nav a:hover {
 .poster img {
   width: 100%;
   height: auto;
-  max-height: 400px;
+  max-height: 700px;
   object-fit: cover;
   border-bottom: 5px solid #fff;
 }
