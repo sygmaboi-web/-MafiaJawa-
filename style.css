@@ -164,5 +164,27 @@ button:hover {
   }
 }
 
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+  gap: 15px; /* jarak antar menu */
+  padding: 10px;
+}
+
+.menu-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.menu-item img {
+  width: 100%;
+  max-width: 150px; /* biar gak terlalu gede */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
 
 
