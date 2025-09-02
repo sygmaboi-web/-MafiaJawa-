@@ -359,3 +359,17 @@ footer.sambutan {
   margin-top: 40px;
   border-top: 2px solid #0072ff;
 }
+/* Poster besar */
+.hero {
+  text-align: center;
+  background: white;
+  padding: 10px;
+}
+
+.hero img {
+  max-width: 100%;   /* biar gak keluar layar */
+  height: auto;      /* biar proporsional */
+  object-fit: contain; /* tampil full, gak kepotong */
+  display: block;
+  margin: 0 auto;
+}
