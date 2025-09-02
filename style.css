@@ -144,5 +144,25 @@ button:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   animation: fadeIn 1.5s ease-in-out;
 }
+/* ====== Responsif Menu (Biar jelas di HP) ====== */
+.menu-item {
+  flex: 1 1 calc(50% - 20px); /* 2 kolom di HP */
+  box-sizing: border-box;
+  margin: 10px;
+  text-align: center;
+}
+
+.menu-item img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+  .menu-item {
+    flex: 1 1 calc(25% - 20px); /* 4 kolom di tablet/desktop */
+  }
+}
+
 
 
