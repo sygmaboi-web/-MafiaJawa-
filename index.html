@@ -60,33 +60,56 @@
   </section>
 
   <!-- Halaman Kasir -->
-  <section id="kasir" class="page">
-    <h2>🛒 Mesin Kasir</h2>
-    <form id="kasirForm">
-      <label>Pilih Produk:</label><br>
-      <div class="checkbox-grid">
-        <label><input type="checkbox" name="produk" value="Small Boss-4000"> Small Boss - Rp 4.000</label><br>
-        <label><input type="checkbox" name="produk" value="Big Boss-7000"> Big Boss - Rp 7.000</label><br>
-        <label><input type="checkbox" name="produk" value="Chiseruan-5000"> Chiseruan - Rp 5.000</label><br>
-        <label><input type="checkbox" name="produk" value="Red Poison-4000"> Red Poison - Rp 4.000</label><br>
-      </div>
-      <br>
-
-      <label>Metode Pembayaran:</label><br>
-      <select id="pembayaran">
-        <option value="Cash">Cash</option>
-        <option value="QRIS">QRIS</option>
-      </select>
-      <br><br>
-
-      <div id="qrisDiv" style="display:none;">
-        <p>Scan QRIS berikut:</p>
-        <img src="qris.jpg" alt="QRIS" class="qris-img">
+ <section id="kasir" class="page">
+  <h2>🛒 Mesin Kasir</h2>
+  <form id="kasirForm">
+    <div class="produk-kasir-grid">
+      <!-- Small Boss -->
+      <div class="produk-kasir-card">
+        <h3>Small Boss - Rp 4.000</h3>
+        <label><input type="checkbox" name="produk" value="Small Boss-4000"> Pilih</label>
+        <input type="number" name="qty-Small Boss" value="1" min="1">
       </div>
 
-      <button type="submit">Checkout</button>
-    </form>
-  </section>
+      <!-- Big Boss -->
+      <div class="produk-kasir-card">
+        <h3>Big Boss - Rp 7.000</h3>
+        <label><input type="checkbox" name="produk" value="Big Boss-7000"> Pilih</label>
+        <input type="number" name="qty-Big Boss" value="1" min="1">
+      </div>
+
+      <!-- Chiseruan -->
+      <div class="produk-kasir-card">
+        <h3>Chiseruan - Rp 5.000</h3>
+        <label><input type="checkbox" name="produk" value="Chiseruan-5000"> Pilih</label>
+        <input type="number" name="qty-Chiseruan" value="1" min="1">
+      </div>
+
+      <!-- Red Poison -->
+      <div class="produk-kasir-card">
+        <h3>Red Poison - Rp 4.000</h3>
+        <label><input type="checkbox" name="produk" value="Red Poison-4000"> Pilih</label>
+        <input type="number" name="qty-Red Poison" value="1" min="1">
+      </div>
+    </div>
+
+    <br>
+    <label>Metode Pembayaran:</label><br>
+    <select id="pembayaran">
+      <option value="Cash">Cash</option>
+      <option value="QRIS">QRIS</option>
+    </select>
+    <br><br>
+
+    <div id="qrisDiv" style="display:none;">
+      <p>Scan QRIS berikut:</p>
+      <img src="qris.jpg" alt="QRIS" class="qris-img">
+    </div>
+
+    <button type="submit">Checkout</button>
+  </form>
+</section>
+
 
   <!-- Halaman Penjualan -->
   <section id="penjualan" class="page">
