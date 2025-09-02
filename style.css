@@ -146,16 +146,16 @@ button:hover {
 }
 /* ====== Responsif Menu (Biar jelas di HP) ====== */
 .menu-item {
-  flex: 1 1 calc(50% - 20px); /* 2 kolom di HP */
+  flex: 1 1 calc(100% - 30px); /* 2 kolom di HP */
   box-sizing: border-box;
-  margin: 10px;
+  margin: 15px;
   text-align: center;
 }
 
 .menu-item img {
   width: 100%;
-  max-width: 250px;
-  border-radius: 12px;
+  max-width: 2400px;
+  border-radius: 17px;
 }
 
 @media (min-width: 768px) {
