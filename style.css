@@ -373,3 +373,44 @@ footer.sambutan {
   display: block;
   margin: 0 auto;
 }
+/* Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* pindahin ke pojok kanan */
+  align-items: center;
+  padding: 15px 30px;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* jarak antar menu */
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  font-size: 16px; /* ukuran sedang */
+  font-weight: 500;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #007bff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background: #007bff;
+  color: white;
+}
+
