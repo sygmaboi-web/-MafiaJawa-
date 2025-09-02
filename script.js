@@ -1,13 +1,12 @@
-// Password untuk masuk ke kasir & penjualan
 const PASSWORD = "KELOMPOK1KEREN";
 
-// Pages
 const pages = document.querySelectorAll(".page");
 document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
     const target = link.dataset.target;
 
+    // Password check untuk kasir & penjualan
     if (target === "kasir" || target === "penjualan") {
       const pass = prompt("Masukkan password:");
       if (pass !== PASSWORD) {
@@ -46,14 +45,12 @@ kasirForm.addEventListener("submit", e => {
   let subtotal = 0;
   selected.forEach(item => {
     subtotal += item.price;
-    // Update total barang
     if (!totalTerjual[item.name]) totalTerjual[item.name] = 0;
     totalTerjual[item.name]++;
   });
 
   totalUang += subtotal;
 
-  // Tambahkan ke history
   history.push({
     items: selected.map(i => i.name),
     subtotal,
@@ -62,31 +59,25 @@ kasirForm.addEventListener("submit", e => {
   });
 
   alert(`Pembelian berhasil! Total: Rp${subtotal}`);
-  totalHargaEl.textContent = "";
   kasirForm.reset();
 
-  updateHistory();
+  updatePenjualan();
 });
 
-// Update history
-function updateHistory() {
+function updatePenjualan() {
   const historyList = document.getElementById("historyList");
   historyList.innerHTML = "";
-  history.forEach((entry, i) => {
+  history.forEach(entry => {
     const li = document.createElement("li");
     li.textContent = `${entry.date} - ${entry.items.join(", ")} - Rp${entry.subtotal} (${entry.payment})`;
     historyList.appendChild(li);
   });
 
-  // Update total penjualan
-  const penjualanSection = document.getElementById("penjualan");
+  const summary = document.getElementById("summary");
   let html = "<h3>Total Barang Terjual:</h3><ul>";
   for (const [name, qty] of Object.entries(totalTerjual)) {
     html += `<li>${name}: ${qty}</li>`;
   }
   html += `</ul><h3>Total Uang Terkumpul: Rp${totalUang}</h3>`;
-  penjualanSection.innerHTML = `<h2>📊 History Penjualan</h2><ul id="historyList"></ul>${html}`;
-  updateHistory();
+  summary.innerHTML = html;
 }
-
-
