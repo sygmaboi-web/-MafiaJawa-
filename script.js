@@ -6,7 +6,6 @@ let sales = [];
 // LOGIN
 // ============================
 
-// Login Kasir
 function loginKasir() {
   let pass = prompt("Masukkan password untuk masuk ke Kasir:");
   if (pass === "KELOMPOK1KEREN") {
@@ -18,7 +17,6 @@ function loginKasir() {
   }
 }
 
-// Login Penjualan
 function loginPenjualan() {
   let pass = prompt("Masukkan password untuk melihat Penjualan:");
   if (pass === "KELOMPOK1KEREN") {
@@ -35,7 +33,6 @@ function loginPenjualan() {
 // KERANJANG
 // ============================
 
-// Tambah ke keranjang
 function addToCart(nama, harga) {
   cart.push({ nama, harga });
   total += harga;
@@ -68,9 +65,9 @@ function checkout() {
   let payment = document.getElementById("payment").value;
 
   if (payment === "QRIS") {
-    document.querySelector(".qris").style.display = "block";
+    document.querySelector(".qris").classList.remove("hidden");
   } else {
-    document.querySelector(".qris").style.display = "none";
+    document.querySelector(".qris").classList.add("hidden");
   }
 
   // Simpan ke penjualan
@@ -101,11 +98,13 @@ function checkout() {
 
 function updateSales() {
   let salesList = document.getElementById("sales-data");
+  let totalSales = 0;
   salesList.innerHTML = "";
 
   sales.forEach((s, i) => {
-    let li = document.createElement("li");
+    totalSales += s.total;
 
+    let li = document.createElement("li");
     let itemsText = s.items.map(it => it.nama).join(", ");
     li.innerHTML = `Transaksi ${i + 1}: ${itemsText} | Rp${s.total} (${s.payment})`;
 
@@ -121,6 +120,8 @@ function updateSales() {
     li.appendChild(btn);
     salesList.appendChild(li);
   });
+
+  document.getElementById("total-sales").textContent = totalSales;
 }
 
 // Hapus semua penjualan
@@ -130,3 +131,4 @@ function clearSales() {
     updateSales();
   }
 }
+
