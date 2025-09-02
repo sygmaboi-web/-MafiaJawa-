@@ -9,107 +9,61 @@
   <!-- Navigasi -->
   <header>
     <h1 class="logo">🍴 Mafia Jawa - Ninefoosion</h1>
+    <header>
     <nav>
       <ul>
         <li><a href="#deskripsi">Deskripsi</a></li>
-        <li><a href="#kasir" onclick="loginKasir()">Mesin Kasir</a></li>
-        <li><a href="#penjualan" onclick="loginPenjualan()">Hasil Penjualan</a></li>
+        <li><a href="kasir.html">Mesin Kasir</a></li>
+        <li><a href="penjualan.html">Hasil Penjualan</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Poster -->
-<section id="poster">
-  <img src="poster.jpg" alt="Poster Mafia Jawa" class="poster">
-</section>
+  <section id="poster">
+    <img src="poster.jpg" alt="Poster Mafia Jawa" class="poster">
+  </section>
 
   <!-- Deskripsi Produk -->
   <section id="deskripsi" class="section">
     <h2>🍟 Produk Kami</h2>
-    <p>Selamat datang di <b>Stand Mafia Jawa</b>! Kami menjual corndog lezat dengan dua pilihan ukuran,Chiseruan yang renyah, dan minuman rahasia berwarna merah yang menyegarkan: <b>Red Poison</b>.</p>
+    <p>Selamat datang di <b>Stand Mafia Jawa</b>! Kami menjual corndog lezat dengan dua pilihan ukuran, Chiseruan yang renyah, dan minuman rahasia berwarna merah yang menyegarkan: <b>Red Poison</b>.</p>
 
-        <div class="produk-card">
-      <div class="img-box">
-        <img src="corndogkecil.jpg" alt="Small Boss">
-      </div>
-      <h3>Small Boss</h3>
-      <p>Harga: Rp4.000</p>
-      <p>Corndog mini, kriuk di luar lembut di dalam.</p>
-    </div>
-
-    <div class="produk-card">
-      <div class="img-box">
-        <img src="corndogbesar.jpg" alt="Big Boss">
-      </div>
-      <h3>Big Boss</h3>
-      <p>Harga: Rp7.000</p>
-      <p>Corndog ukuran besar, bikin kenyang puas!</p>
-    </div>
-
-    <div class="produk-card">
-      <div class="img-box">
-        <img src="SIGMA" alt="Chiseruan">
-      </div>
-      <h3>Chiseruan</h3>
-      <p>Harga: Rp5.000</p>
-      <p>Potongan ayam goreng crispy dengan citarasa yang menggoda.</p>
-    </div>
-
-    <div class="produk-card">
-      <div class="img-box">
-        <img src="redpoison.jpg" alt="Red Poison">
-      </div>
-      <h3>Red Poison</h3>
-      <p>Harga: Rp4.000</p>
-      <p>Minuman berwarna merah dengan resep rahasia ✨</p>
-    </div>
-
-  </div>
-</section>
-
-  <!-- Kasir -->
-  <section id="kasir" class="section hidden">
-    <h2>💰 Mesin Kasir</h2>
-    <div class="kasir-container">
-      <div class="produk-list">
-        <h3>Pilih Produk</h3>
-        <button onclick="addToCart('Small Boss', 4000)">Small Boss - Rp4.000</button>
-        <button onclick="addToCart('Big Boss', 7000)">Big Boss - Rp7.000</button>
-        <button onclick="addToCart('Red Poison', 4000)">Red Poison - Rp4.000</button>
-        <button onclick="addToCart('Red Poison', 4000)">Chiseruan - Rp5.000</button>
+    <div class="produk-grid">
+      <div class="produk-card">
+        <div class="img-box"><img src="corndogkecil.jpg" alt="Small Boss"></div>
+        <h3>Small Boss</h3>
+        <p>Harga: Rp4.000</p>
+        <p>Corndog mini, kriuk di luar lembut di dalam.</p>
       </div>
 
-      <div class="keranjang">
-        <h3>Keranjang Belanja</h3>
-        <ul id="cart"></ul>
-        <p><b>Total:</b> Rp<span id="total">0</span></p>
-        <label>Metode Pembayaran:</label>
-        <select id="payment">
-          <option value="Cash">Cash</option>
-          <option value="QRIS">QRIS</option>
-        </select>
-        <img src="qris.jpg" alt="QRIS" class="qris">
-        <button onclick="checkout()">Checkout</button>
+      <div class="produk-card">
+        <div class="img-box"><img src="corndogbesar.jpg" alt="Big Boss"></div>
+        <h3>Big Boss</h3>
+        <p>Harga: Rp7.000</p>
+        <p>Corndog ukuran besar, bikin kenyang puas!</p>
+      </div>
+
+      <div class="produk-card">
+        <div class="img-box"><img src="SIGMA" alt="Chiseruan"></div>
+        <h3>Chiseruan</h3>
+        <p>Harga: Rp5.000</p>
+        <p>Potongan ayam goreng crispy dengan citarasa yang menggoda.</p>
+      </div>
+
+      <div class="produk-card">
+        <div class="img-box"><img src="redpoison.jpg" alt="Red Poison"></div>
+        <h3>Red Poison</h3>
+        <p>Harga: Rp4.000</p>
+        <p>Minuman berwarna merah dengan resep rahasia ✨</p>
       </div>
     </div>
-    <div id="receipt"></div>
-  </section>
-
-  <!-- Hasil Penjualan -->
-  <section id="penjualan" class="section hidden">
-    <h2>📊 Hasil Penjualan</h2>
-    <ul id="sales-data"></ul>
-    <button onclick="clearSales()">Hapus Semua Data Penjualan</button>
   </section>
 
   <footer>
     <p>© 2025 Mafia Jawa - Ninefoosion | Market Day SMP Islam Plus Baitulmaal</p>
-  
+    <p>Pemesanan & Info: Rahman 085282064128 | Vino 081387066045</p>
+    <p>Made by @alvino_daris</p>
   </footer>
-  <p>Pemesanan & Info Lebih Lanjut Hubungi: Rahman 085282064128 Vino 081387066045<p>
-    
-                      <p> made by @alvino_daris</p>
-
-  <script src="script.js"></script>
 </body>
 </html>
