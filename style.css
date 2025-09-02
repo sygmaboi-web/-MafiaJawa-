@@ -1,156 +1,22 @@
+/* Umum */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f8f9fa;
-  color: #333;
-}
-
-header {
-  background: #2d6a4f;
-  color: white;
-  padding: 15px 20px;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-}
-
-.hero img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.produk {
-  padding: 40px;
-  text-align: center;
-}
-
-.produk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.produk-card {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
-}
-
-.produk-card img {
-  max-width: 100%;
-  border-radius: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #2d6a4f;
-  color: white;
-  margin-top: 40px;
-}
-
-/* Halaman switch */
-.page {
-  display: none;
-  padding: 40px;
-}
-
-.page.active {
-  display: block;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background: #1e88e5;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-nav button {
-  margin: 5px;
-  padding: 10px;
-  background: #43a047;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-section {
-  padding: 15px;
-}
-
-.menu-list button {
-  display: block;
-  margin: 5px 0;
-  padding: 10px;
-  width: 200px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-#cart li {
-  list-style: none;
-}
-
-#sales-data li {
-  margin: 5px 0;
-}
-
-.delete-btn {
-  background: red;
-  color: white;
-  border: none;
-  margin-left: 10px;
-  cursor: pointer;
-  border-radius: 3px;
-}
-.page {
-  display: none;
-}
-.page.active {
-  display: block;
+  background: #f0f8ff;
 }
 
 /* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #1e90ff;
-  padding: 10px;
+  padding: 10px 20px;
   color: white;
+}
+.navbar .logo {
+  font-weight: bold;
 }
 .nav-links li {
   display: inline;
@@ -161,3 +27,48 @@ section {
   text-decoration: none;
 }
 
+/* Pages */
+.page {
+  display: none;
+  padding: 20px;
+}
+.page.active {
+  display: block;
+}
+
+/* Hero */
+.hero img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Produk */
+.produk-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.produk-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  flex: 1 1 200px;
+  text-align: center;
+}
+.produk-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Footer */
+footer {
+  background: #1e90ff;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
