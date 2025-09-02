@@ -64,9 +64,9 @@ nav a:hover {
 .produk-card {
   background: #fff;
   color: #2d3436;
-  padding: 20px;
-  border-radius: 15px;
-  width: 250px;
+  padding: 50px;
+  border-radius: 30px;
+  width: 400px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   transition: transform 0.3s;
 }
@@ -76,7 +76,7 @@ nav a:hover {
 }
 
 .produk-card img {
-  width: 100%;
+  width: 150%;
   border-radius: 10px;
   margin-bottom: 15px;
 }
@@ -146,9 +146,9 @@ button:hover {
 }
 /* ====== Responsif Menu (Biar jelas di HP) ====== */
 .menu-item {
-  flex: 1 1 calc(100% - 30px); /* 2 kolom di HP */
+  flex: 1 1 calc(120% - 100px); /* 2 kolom di HP */
   box-sizing: border-box;
-  margin: 15px;
+  margin: 20px;
   text-align: center;
 }
 
@@ -160,7 +160,7 @@ button:hover {
 
 @media (min-width: 768px) {
   .menu-item {
-    flex: 1 1 calc(25% - 20px); /* 4 kolom di tablet/desktop */
+    flex: 1 1 calc(50% - 50px); /* 4 kolom di tablet/desktop */
   }
 }
 
