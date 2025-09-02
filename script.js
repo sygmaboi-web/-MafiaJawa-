@@ -53,6 +53,7 @@ function checkout() {
   }
   // Simpan ke penjualan
   sales.push({ items: [...cart], total, payment });
+
   // Struk
   let receipt = document.getElementById("receipt");
   receipt.innerHTML = "<h3>Struk Pembelian</h3>";
@@ -62,10 +63,12 @@ function checkout() {
   receipt.innerHTML += `<hr><p><b>Total:</b> Rp${total}</p>`;
   receipt.innerHTML += `<p><b>Pembayaran:</b> ${payment}</p>`;
   receipt.innerHTML += `<p>Terima kasih telah membeli di Mafia Jawa!</p>`;
+
   // Reset keranjang
   cart = [];
   total = 0;
   updateCart();
+  updateSales(); // update history otomatis
 }
 
 // Update hasil penjualan
@@ -74,7 +77,20 @@ function updateSales() {
   salesList.innerHTML = "";
   sales.forEach((s, i) => {
     let li = document.createElement("li");
-    li.innerHTML = `Transaksi ${i+1}: Rp${s.total} (${s.payment})`;
+
+    let itemsText = s.items.map(it => it.nama).join(", ");
+    li.innerHTML = `Transaksi ${i+1}: ${itemsText} | Rp${s.total} (${s.payment})`;
+
+    // Tombol hapus per transaksi
+    let btn = document.createElement("button");
+    btn.textContent = "❌";
+    btn.style.marginLeft = "10px";
+    btn.onclick = () => {
+      sales.splice(i, 1); // hapus transaksi ke-i
+      updateSales();
+    };
+
+    li.appendChild(btn);
     salesList.appendChild(li);
   });
 }
@@ -86,6 +102,7 @@ function clearSales() {
     updateSales();
   }
 }
+
 
 
 
