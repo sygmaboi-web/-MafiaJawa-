@@ -62,3 +62,28 @@ footer {
   margin-top: 20px;
 }
 button { cursor: pointer; }
+.produk-kasir-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+  gap: 20px;
+}
+
+.produk-kasir-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  text-align: center;
+}
+
+.produk-kasir-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.produk-kasir-card input[type="number"] {
+  width: 60px;
+  margin-left: 5px;
+}
