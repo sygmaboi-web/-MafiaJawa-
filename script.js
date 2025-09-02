@@ -32,23 +32,36 @@ let totalUang = 0;
 
 kasirForm.addEventListener("submit", e => {
   e.preventDefault();
-  const selected = Array.from(document.querySelectorAll('input[name="produk"]:checked')).map(input => {
-    const [name, price] = input.value.split("-");
-    return { name, price: parseInt(price) };
-  });
 
-  if (selected.length === 0) { alert("Pilih produk dulu!"); return; }
+  // Ambil semua checkbox yang dicentang
+  const selectedCheckboxes = Array.from(document.querySelectorAll('input[name="produk"]:checked'));
+  if (selectedCheckboxes.length === 0) {
+    alert("Pilih produk dulu!");
+    return;
+  }
 
   let subtotal = 0;
-  selected.forEach(item => {
-    subtotal += item.price;
-    totalTerjual[item.name] = (totalTerjual[item.name] || 0) + 1;
+  let itemsBought = [];
+
+  selectedCheckboxes.forEach(cb => {
+    const [name, price] = cb.value.split("-");
+    const qtyInput = document.querySelector(`input[name="qty-${name}"]`);
+    const qty = parseInt(qtyInput.value) || 1;
+
+    subtotal += parseInt(price) * qty;
+
+    // Update total terjual
+    totalTerjual[name] = (totalTerjual[name] || 0) + qty;
+
+    // Masukkan nama produk sesuai qty ke history
+    for (let i=0; i<qty; i++) itemsBought.push(name);
   });
 
   totalUang += subtotal;
 
+  // Tambah ke history
   history.push({
-    items: selected.map(i => i.name),
+    items: itemsBought,
     subtotal,
     payment: pembayaranEl.value,
     date: new Date().toLocaleString()
@@ -61,6 +74,7 @@ kasirForm.addEventListener("submit", e => {
   updatePenjualan();
 });
 
+// Fungsi update halaman penjualan
 function updatePenjualan() {
   const historyList = document.getElementById("historyList");
   historyList.innerHTML = "";
@@ -79,6 +93,7 @@ function updatePenjualan() {
   summary.innerHTML = html;
 }
 
+// Fungsi hapus transaksi
 function hapusHistory(index) {
   const entry = history[index];
   entry.items.forEach(name => totalTerjual[name]--);
@@ -86,4 +101,5 @@ function hapusHistory(index) {
   history.splice(index, 1);
   updatePenjualan();
 }
+
 
