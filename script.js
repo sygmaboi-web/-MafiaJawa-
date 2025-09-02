@@ -1,5 +1,6 @@
 const PASSWORD = "KELOMPOK1KEREN";
 
+// Navigasi
 const pages = document.querySelectorAll(".page");
 document.querySelectorAll(".nav-links a").forEach(link => {
   link.addEventListener("click", e => {
@@ -16,7 +17,7 @@ document.querySelectorAll(".nav-links a").forEach(link => {
   });
 });
 
-// QRIS show/hide
+// QRIS toggle
 const pembayaranEl = document.getElementById("pembayaran");
 const qrisDiv = document.getElementById("qrisDiv");
 pembayaranEl.addEventListener("change", () => {
@@ -31,11 +32,8 @@ let totalUang = 0;
 
 kasirForm.addEventListener("submit", e => {
   e.preventDefault();
-  const produkSelect = document.getElementById("produk");
-  const payment = pembayaranEl.value;
-
-  const selected = Array.from(produkSelect.selectedOptions).map(opt => {
-    const [name, price] = opt.value.split("-");
+  const selected = Array.from(document.querySelectorAll('input[name="produk"]:checked')).map(input => {
+    const [name, price] = input.value.split("-");
     return { name, price: parseInt(price) };
   });
 
@@ -52,7 +50,7 @@ kasirForm.addEventListener("submit", e => {
   history.push({
     items: selected.map(i => i.name),
     subtotal,
-    payment,
+    payment: pembayaranEl.value,
     date: new Date().toLocaleString()
   });
 
@@ -83,9 +81,9 @@ function updatePenjualan() {
 
 function hapusHistory(index) {
   const entry = history[index];
-  // kurangi totalTerjual
   entry.items.forEach(name => totalTerjual[name]--);
   totalUang -= entry.subtotal;
   history.splice(index, 1);
   updatePenjualan();
 }
+
