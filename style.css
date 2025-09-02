@@ -1,416 +1,82 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
-  background: linear-gradient(to right, #00b894, #0984e3);
-  color: #fff;
+  padding: 0;
+  background: #f8f9fa;
+  color: #333;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #fff;
-  color: #2d3436;
-  position: sticky;
-  top: 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  background: #2d6a4f;
+  color: white;
+  padding: 15px 20px;
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #0984e3;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #2d3436;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  color: #00b894;
-}
-
-.poster img {
-  width: 100%;
-  height: auto;
-  max-height: 700px;
-  object-fit: cover;
-  border-bottom: 5px solid #fff;
-}
-
-.section {
-  padding: 40px;
-  text-align: center;
-}
-
-.produk-grid {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.produk-card {
-  background: #fff;
-  color: #2d3436;
-  padding: 50px;
-  border-radius: 30px;
-  width: 400px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-
-.produk-card:hover {
-  transform: scale(1.05);
-}
-
-.produk-card img {
-  width: 150%;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.kasir-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.produk-list, .keranjang {
-  background: #fff;
-  color: #2d3436;
-  padding: 20px;
-  border-radius: 15px;
-  width: 300px;
-}
-
-button {
-  padding: 10px 15px;
-  margin: 5px 0;
-  border: none;
-  border-radius: 10px;
-  background: #0984e3;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #00b894;
-}
-
-.qris {
-  width: 150px;
-  display: none;
-  margin: 15px auto;
-}
-
-.hidden {
-  display: none;
-}
-
-#receipt {
-  margin-top: 20px;
-  padding: 15px;
-  background: #fff;
-  color: #2d3436;
-  border-radius: 10px;
-  text-align: left;
-}
-#poster {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  padding: 20px;
-}
-
-#poster img {
-  max-width: 100%;     /* supaya poster tidak melebihi lebar layar */
-  max-height: 90vh;    /* supaya poster muat di tinggi layar laptop */
-  object-fit: contain; /* menampilkan keseluruhan gambar tanpa terpotong */
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 1.5s ease-in-out;
-}
-.menu-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* default HP: 2 kolom */
-  gap: 15px;
-  padding: 10px;
-}
-
-.menu-item {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  height: 280px; /* tinggi semua kotak sama */
-}
-
-.menu-item .img-box {
-  width: 100%;
-  height: 150px;        /* tinggi tetap untuk gambar */
-  margin-bottom: 10px;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.menu-item .img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;    /* isi penuh, seragam */
-}
-
-.menu-item h3 {
-  font-size: 16px;
-  margin: 5px 0;
-}
-
-.menu-item p {
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Tablet: 3 kolom */
-@media (min-width: 601px) and (max-width: 900px) {
-  .menu-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Laptop/Desktop: 4 kolom */
-@media (min-width: 901px) {
-  .menu-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-}
-.produk-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 12px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  height: 280px; /* semua card sama tinggi */
-  overflow: hidden; /* biar gambar ga keluar kotak */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.produk-card .img-box {
-  width: 100%;
-  height: 120px;   /* lebih kecil, fix */
-  margin-bottom: 10px;
-  overflow: hidden;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f2f2f2; /* biar ada background netral */
-}
-
-.produk-card .img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* isi penuh tanpa melar */
-}
-.produk-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  padding: 15px;
-}
-
-.produk-card {
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.produk-card img {
-  width: 100%;
-  height: 160px; /* tinggi tetap biar kotaknya seragam */
-  object-fit: contain; /* biar gambar sesuai proporsinya */
-  background-color: #f5f5f5; /* kasih background abu/putih biar gak bolong */
-  border-radius: 8px;
-}
-
-.produk-card h3 {
-  margin: 8px 0 4px;
-  font-size: 1rem;
-}
-
-.produk-card p {
-  margin: 2px 0;
-  font-size: 0.9rem;
-}
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  color: #333;
-}
-
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar .logo {
-  font-weight: bold;
-  color: #0072ff;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 16px;
+  gap: 20px;
 }
 
 .nav-links a {
+  color: white;
   text-decoration: none;
-  color: #0072ff;
   font-weight: bold;
 }
 
-/* Poster besar */
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
 .hero img {
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
-/* Produk */
 .produk {
-  padding: 40px 20px;
+  padding: 40px;
   text-align: center;
 }
 
 .produk-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  margin-top: 20px;
 }
 
 .produk-card {
   background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
 }
 
 .produk-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: contain; /* biar proporsional */
-  border-radius: 8px;
+  max-width: 100%;
+  border-radius: 10px;
 }
 
-/* Footer sambutan */
-footer.sambutan {
-  background: white;
+footer {
   text-align: center;
   padding: 20px;
-  margin-top: 40px;
-  border-top: 2px solid #0072ff;
-}
-/* Poster besar */
-.hero {
-  text-align: center;
-  background: white;
-  padding: 10px;
-}
-
-.hero img {
-  max-width: 100%;   /* biar gak keluar layar */
-  height: auto;      /* biar proporsional */
-  object-fit: contain; /* tampil full, gak kepotong */
-  display: block;
-  margin: 0 auto;
-}
-/* Navbar */
-.navbar {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end; /* pindahin ke pojok kanan */
-  align-items: center;
-  padding: 15px 30px;
-  background: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px; /* jarak antar menu */
-  margin: 0;
-  padding: 0;
-}
-
-.navbar li {
-  font-size: 16px; /* ukuran sedang */
-  font-weight: 500;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: #007bff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: background 0.3s;
-}
-
-.navbar a:hover {
-  background: #007bff;
+  background: #2d6a4f;
   color: white;
+  margin-top: 40px;
 }
 
+/* Halaman switch */
+.page {
+  display: none;
+  padding: 40px;
+}
+
+.page.active {
+  display: block;
+}
