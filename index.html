@@ -64,13 +64,13 @@
     <h2>🛒 Mesin Kasir</h2>
     <form id="kasirForm">
       <label>Pilih Produk:</label><br>
-      <select id="produk" multiple size="5">
-        <option value="Small Boss-4000">Small Boss - Rp 4.000</option>
-        <option value="Big Boss-7000">Big Boss - Rp 7.000</option>
-        <option value="Chiseruan-5000">Chiseruan - Rp 5.000</option>
-        <option value="Red Poison-4000">Red Poison - Rp 4.000</option>
-      </select>
-      <br><br>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="produk" value="Small Boss-4000"> Small Boss - Rp 4.000</label><br>
+        <label><input type="checkbox" name="produk" value="Big Boss-7000"> Big Boss - Rp 7.000</label><br>
+        <label><input type="checkbox" name="produk" value="Chiseruan-5000"> Chiseruan - Rp 5.000</label><br>
+        <label><input type="checkbox" name="produk" value="Red Poison-4000"> Red Poison - Rp 4.000</label><br>
+      </div>
+      <br>
 
       <label>Metode Pembayaran:</label><br>
       <select id="pembayaran">
@@ -86,7 +86,6 @@
 
       <button type="submit">Checkout</button>
     </form>
-    <p id="totalHarga"></p>
   </section>
 
   <!-- Halaman Penjualan -->
@@ -106,4 +105,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
