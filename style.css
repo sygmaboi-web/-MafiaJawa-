@@ -137,3 +137,27 @@ section {
   cursor: pointer;
   border-radius: 3px;
 }
+.page {
+  display: none;
+}
+.page.active {
+  display: block;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e90ff;
+  padding: 10px;
+  color: white;
+}
+.nav-links li {
+  display: inline;
+  margin: 0 10px;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
