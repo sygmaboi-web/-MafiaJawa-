@@ -204,3 +204,37 @@ button:hover {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+.produk-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: 280px; /* semua card sama tinggi */
+  overflow: hidden; /* biar gambar ga keluar kotak */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produk-card .img-box {
+  width: 100%;
+  height: 120px;   /* lebih kecil, fix */
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2; /* biar ada background netral */
+}
+
+.produk-card .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* isi penuh tanpa melar */
+}
