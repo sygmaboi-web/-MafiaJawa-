@@ -5,7 +5,6 @@ body {
   color: #fff;
 }
 
-/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -41,7 +40,94 @@ nav a:hover {
   color: #00b894;
 }
 
-/* POSTER */
+.poster img {
+  width: 100%;
+  height: auto;
+  max-height: 700px;
+  object-fit: cover;
+  border-bottom: 5px solid #fff;
+}
+
+.section {
+  padding: 40px;
+  text-align: center;
+}
+
+.produk-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.produk-card {
+  background: #fff;
+  color: #2d3436;
+  padding: 50px;
+  border-radius: 30px;
+  width: 400px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.produk-card:hover {
+  transform: scale(1.05);
+}
+
+.produk-card img {
+  width: 150%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.kasir-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.produk-list, .keranjang {
+  background: #fff;
+  color: #2d3436;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 10px;
+  background: #0984e3;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00b894;
+}
+
+.qris {
+  width: 150px;
+  display: none;
+  margin: 15px auto;
+}
+
+.hidden {
+  display: none;
+}
+
+#receipt {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  color: #2d3436;
+  border-radius: 10px;
+  text-align: left;
+}
 #poster {
   display: flex;
   justify-content: center;
@@ -51,32 +137,113 @@ nav a:hover {
 }
 
 #poster img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain; /* gambar full tanpa terpotong */
+  max-width: 100%;     /* supaya poster tidak melebihi lebar layar */
+  max-height: 90vh;    /* supaya poster muat di tinggi layar laptop */
+  object-fit: contain; /* menampilkan keseluruhan gambar tanpa terpotong */
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   animation: fadeIn 1.5s ease-in-out;
 }
-
-/* PRODUK GRID */
-.produk-grid {
+.menu-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* default HP: 2 kolom */
   gap: 15px;
-  padding: 15px;
+  padding: 10px;
 }
 
+.menu-item {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: 280px; /* tinggi semua kotak sama */
+}
+
+.menu-item .img-box {
+  width: 100%;
+  height: 150px;        /* tinggi tetap untuk gambar */
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.menu-item .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* isi penuh, seragam */
+}
+
+.menu-item h3 {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.menu-item p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Tablet: 3 kolom */
 @media (min-width: 601px) and (max-width: 900px) {
-  .produk-grid {
+  .menu-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Laptop/Desktop: 4 kolom */
 @media (min-width: 901px) {
-  .produk-grid {
+  .menu-container {
     grid-template-columns: repeat(4, 1fr);
   }
+
+}
+.produk-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: 280px; /* semua card sama tinggi */
+  overflow: hidden; /* biar gambar ga keluar kotak */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produk-card .img-box {
+  width: 100%;
+  height: 120px;   /* lebih kecil, fix */
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2; /* biar ada background netral */
+}
+
+.produk-card .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* isi penuh tanpa melar */
+}
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 15px;
 }
 
 .produk-card {
@@ -88,106 +255,22 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 280px; /* biar semua seragam */
 }
 
 .produk-card img {
   width: 100%;
-  height: 160px;           /* fix tinggi */
-  object-fit: contain;     /* gambar muat semua, proporsional */
-  background: #f5f5f5;     /* biar gak bolong */
+  height: 160px; /* tinggi tetap biar kotaknya seragam */
+  object-fit: contain; /* biar gambar sesuai proporsinya */
+  background-color: #f5f5f5; /* kasih background abu/putih biar gak bolong */
   border-radius: 8px;
 }
 
 .produk-card h3 {
   margin: 8px 0 4px;
   font-size: 1rem;
-  color: #2d3436;
-}
-
-.produk-card p {
-  margin: 2px 0;
-  font-size: 0.9rem;
-  color: #2d3436;
-}
-/* GRID PRODUK */
-.produk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-  padding: 15px;
-}
-
-/* CARD PRODUK */
-.produk-card {
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 340px; /* sedikit lebih tinggi */
-}
-
-.produk-card img {
-  width: 100%;
-  height: 200px; /* lebih besar */
-  object-fit: contain;
-  background: #f5f5f5;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.produk-card h3 {
-  margin: 8px 0 4px;
-  font-size: 1.1rem;
 }
 
 .produk-card p {
   margin: 2px 0;
   font-size: 0.9rem;
 }
-.produk-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.produk-card {
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 12px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 360px; /* lebih tinggi agar ruang gambar lebih lega */
-}
-
-.produk-card img {
-  width: 100%;
-  height: 200px;             /* lebih besar dari sebelumnya */
-  object-fit: contain;       /* tetap utuh dan proporsional */
-  background-color: #f5f5f5; /* latar netral untuk ruang kosong */
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-.produk-card h3 {
-  margin: 8px 0 4px;
-  font-size: 1.2rem;
-  color: #2d3436;
-}
-
-.produk-card p {
-  margin: 2px 0;
-  font-size: 1rem;
-  color: #2d3436;
-}
-
-
-
-
