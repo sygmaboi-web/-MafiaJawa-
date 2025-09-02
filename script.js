@@ -1,134 +1,92 @@
-let cart = [];
-let total = 0;
-let sales = [];
+// Password untuk masuk ke kasir & penjualan
+const PASSWORD = "KELOMPOK1KEREN";
 
-// ============================
-// LOGIN
-// ============================
+// Pages
+const pages = document.querySelectorAll(".page");
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const target = link.dataset.target;
 
-function loginKasir() {
-  let pass = prompt("Masukkan password untuk masuk ke Kasir:");
-  if (pass === "KELOMPOK1KEREN") {
-    const kasirEl = document.getElementById("kasir");
-    kasirEl.classList.remove("hidden");
-    kasirEl.scrollIntoView({ behavior: "smooth" });
-  } else {
-    alert("Password salah!");
-  }
-}
+    if (target === "kasir" || target === "penjualan") {
+      const pass = prompt("Masukkan password:");
+      if (pass !== PASSWORD) {
+        alert("Password salah!");
+        return;
+      }
+    }
 
-function loginPenjualan() {
-  let pass = prompt("Masukkan password untuk melihat Penjualan:");
-  if (pass === "KELOMPOK1KEREN") {
-    const penjualanEl = document.getElementById("penjualan");
-    penjualanEl.classList.remove("hidden");
-    penjualanEl.scrollIntoView({ behavior: "smooth" });
-    updateSales();
-  } else {
-    alert("Password salah!");
-  }
-}
+    pages.forEach(p => p.classList.remove("active"));
+    document.getElementById(target).classList.add("active");
+  });
+});
 
-// ============================
-// KERANJANG
-// ============================
+// Kasir
+const kasirForm = document.getElementById("kasirForm");
+const totalHargaEl = document.getElementById("totalHarga");
+let history = [];
+let totalTerjual = {};
+let totalUang = 0;
 
-function addToCart(nama, harga) {
-  cart.push({ nama, harga });
-  total += harga;
-  updateCart();
-}
+kasirForm.addEventListener("submit", e => {
+  e.preventDefault();
+  const produkSelect = document.getElementById("produk");
+  const pembayaran = document.getElementById("pembayaran").value;
 
-function updateCart() {
-  let cartList = document.getElementById("cart");
-  cartList.innerHTML = "";
-
-  cart.forEach(item => {
-    let li = document.createElement("li");
-    li.textContent = `${item.nama} - Rp${item.harga}`;
-    cartList.appendChild(li);
+  const selected = Array.from(produkSelect.selectedOptions).map(opt => {
+    const [name, price] = opt.value.split("-");
+    return { name, price: parseInt(price) };
   });
 
-  document.getElementById("total").textContent = total;
-}
-
-// ============================
-// CHECKOUT
-// ============================
-
-function checkout() {
-  if (cart.length === 0) {
-    alert("Keranjang kosong!");
+  if (selected.length === 0) {
+    alert("Pilih produk dulu!");
     return;
   }
 
-  let payment = document.getElementById("payment").value;
-
-  if (payment === "QRIS") {
-    document.querySelector(".qris").classList.remove("hidden");
-  } else {
-    document.querySelector(".qris").classList.add("hidden");
-  }
-
-  // Simpan ke penjualan
-  sales.push({ items: [...cart], total, payment });
-
-  // Tampilkan struk
-  let receipt = document.getElementById("receipt");
-  receipt.innerHTML = `<h3>Struk Pembelian</h3>`;
-  cart.forEach(item => {
-    receipt.innerHTML += `<p>${item.nama} - Rp${item.harga}</p>`;
-  });
-  receipt.innerHTML += `
-    <hr><p><b>Total:</b> Rp${total}</p>
-    <p><b>Pembayaran:</b> ${payment}</p>
-    <p>Terima kasih telah membeli di Mafia Jawa!</p>
-  `;
-
-  // Reset keranjang
-  cart = [];
-  total = 0;
-  updateCart();
-  updateSales();
-}
-
-// ============================
-// DATA PENJUALAN
-// ============================
-
-function updateSales() {
-  let salesList = document.getElementById("sales-data");
-  let totalSales = 0;
-  salesList.innerHTML = "";
-
-  sales.forEach((s, i) => {
-    totalSales += s.total;
-
-    let li = document.createElement("li");
-    let itemsText = s.items.map(it => it.nama).join(", ");
-    li.innerHTML = `Transaksi ${i + 1}: ${itemsText} | Rp${s.total} (${s.payment})`;
-
-    // Tombol hapus per transaksi
-    let btn = document.createElement("button");
-    btn.textContent = "❌";
-    btn.className = "delete-btn";
-    btn.onclick = () => {
-      sales.splice(i, 1);
-      updateSales();
-    };
-
-    li.appendChild(btn);
-    salesList.appendChild(li);
+  let subtotal = 0;
+  selected.forEach(item => {
+    subtotal += item.price;
+    // Update total barang
+    if (!totalTerjual[item.name]) totalTerjual[item.name] = 0;
+    totalTerjual[item.name]++;
   });
 
-  document.getElementById("total-sales").textContent = totalSales;
+  totalUang += subtotal;
+
+  // Tambahkan ke history
+  history.push({
+    items: selected.map(i => i.name),
+    subtotal,
+    payment: pembayaran,
+    date: new Date().toLocaleString()
+  });
+
+  alert(`Pembelian berhasil! Total: Rp${subtotal}`);
+  totalHargaEl.textContent = "";
+  kasirForm.reset();
+
+  updateHistory();
+});
+
+// Update history
+function updateHistory() {
+  const historyList = document.getElementById("historyList");
+  historyList.innerHTML = "";
+  history.forEach((entry, i) => {
+    const li = document.createElement("li");
+    li.textContent = `${entry.date} - ${entry.items.join(", ")} - Rp${entry.subtotal} (${entry.payment})`;
+    historyList.appendChild(li);
+  });
+
+  // Update total penjualan
+  const penjualanSection = document.getElementById("penjualan");
+  let html = "<h3>Total Barang Terjual:</h3><ul>";
+  for (const [name, qty] of Object.entries(totalTerjual)) {
+    html += `<li>${name}: ${qty}</li>`;
+  }
+  html += `</ul><h3>Total Uang Terkumpul: Rp${totalUang}</h3>`;
+  penjualanSection.innerHTML = `<h2>📊 History Penjualan</h2><ul id="historyList"></ul>${html}`;
+  updateHistory();
 }
 
-// Hapus semua penjualan
-function clearSales() {
-  if (confirm("Hapus semua data penjualan?")) {
-    sales = [];
-    updateSales();
-  }
-}
 
