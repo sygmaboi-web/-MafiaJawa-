@@ -89,4 +89,3 @@ function hapusHistory(index) {
   history.splice(index, 1);
   updatePenjualan();
 }
-
