@@ -2,16 +2,19 @@ let cart = [];
 let total = 0;
 let salesData = {};
 
-function addItem(name, price){
-  cart.push({name, price});
+// --------------------
+// KERANJANG
+// --------------------
+function addItem(name, price) {
+  cart.push({ name, price });
   total += price;
   updateCart();
 }
 
-function updateCart(){
+function updateCart() {
   const cartItems = document.getElementById('cartItems');
   cartItems.innerHTML = '';
-  cart.forEach(item=>{
+  cart.forEach(item => {
     const li = document.createElement('li');
     li.textContent = `${item.name} - Rp ${item.price}`;
     cartItems.appendChild(li);
@@ -19,6 +22,9 @@ function updateCart(){
   document.getElementById('total').textContent = total;
 }
 
+// --------------------
+// PEMBAYARAN
+// --------------------
 function pay(method) {
   if (cart.length === 0) return alert("Keranjang kosong!");
 
@@ -26,7 +32,7 @@ function pay(method) {
     // tampilkan QRIS tanpa langsung reset keranjang
     document.getElementById('qrisContainer').style.display = 'block';
     alert("Silakan scan QRIS untuk melanjutkan pembayaran.");
-    return; // keluar dulu, jangan langsung reset cart
+    return; // keluar dulu, tunggu konfirmasi
   }
 
   // kalau metode lain (Tunai)
@@ -44,58 +50,84 @@ function pay(method) {
   updateDataTable();
 }
 
+function confirmQrisPayment() {
+  cart.forEach(item => {
+    if (!salesData[item.name]) salesData[item.name] = { qty: 0, total: 0 };
+    salesData[item.name].qty += 1;
+    salesData[item.name].total += item.price;
+  });
+
+  alert("Pembayaran QRIS berhasil!");
+
+  cart = [];
+  total = 0;
+  updateCart();
+  updateDataTable();
+
+  // sembunyikan QRIS lagi
+  document.getElementById('qrisContainer').style.display = 'none';
 }
 
-// Kasir login
-document.getElementById('loginBtn').addEventListener('click', ()=>{
+// --------------------
+// LOGIN KASIR
+// --------------------
+document.getElementById('loginBtn').addEventListener('click', () => {
   const pass = document.getElementById('password').value;
-  if(pass==="KELOMPOK1KEREN"){
+  if (pass === "KELOMPOK1KEREN") {
     document.getElementById('kasirPanel').classList.remove('hidden');
     document.querySelector('#kasirContent .login').classList.add('hidden');
-  }else{
+  } else {
     alert("Password salah!");
   }
 });
 
-// Data Penjualan login
-document.getElementById('loginDataBtn').addEventListener('click', ()=>{
+// --------------------
+// LOGIN DATA PENJUALAN
+// --------------------
+document.getElementById('loginDataBtn').addEventListener('click', () => {
   const pass = document.getElementById('passwordData').value;
-  if(pass==="KELOMPOK1KEREN"){
+  if (pass === "KELOMPOK1KEREN") {
     document.getElementById('dataPanel').classList.remove('hidden');
     document.getElementById('loginData').classList.add('hidden');
     updateDataTable();
-  }else{
+  } else {
     alert("Password salah!");
   }
 });
 
-function updateDataTable(){
+// --------------------
+// DATA PENJUALAN
+// --------------------
+function updateDataTable() {
   const tbody = document.getElementById('dataTable');
-  tbody.innerHTML='';
-  for(let product in salesData){
-    const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${product}</td><td>${salesData[product].qty}</td><td>Rp ${salesData[product].total}</td>`;
+  tbody.innerHTML = '';
+  for (let product in salesData) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${product}</td><td>${salesData[product].qty}</td><td>Rp ${salesData[product].total}</td>`;
     tbody.appendChild(tr);
   }
 }
 
-function clearData(){
-  if(confirm("Hapus semua history penjualan?")){
-    salesData={};
+function clearData() {
+  if (confirm("Hapus semua history penjualan?")) {
+    salesData = {};
     updateDataTable();
   }
 }
 
-// Floating panel controls
-document.getElementById('openKasirBtn').addEventListener('click', ()=>{
+// --------------------
+// FLOATING PANEL CONTROLS
+// --------------------
+document.getElementById('openKasirBtn').addEventListener('click', () => {
   document.getElementById('kasirContent').classList.remove('hidden');
 });
-document.getElementById('openDataBtn').addEventListener('click', ()=>{
+document.getElementById('openDataBtn').addEventListener('click', () => {
   document.getElementById('dataContent').classList.remove('hidden');
 });
-function closePanel(id){
+function closePanel(id) {
   document.getElementById(id).classList.add('hidden');
 }
+
 
 
 
