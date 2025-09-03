@@ -19,18 +19,31 @@ function updateCart(){
   document.getElementById('total').textContent = total;
 }
 
-function pay(method){
-  if(cart.length===0) return alert("Keranjang kosong!");
-  cart.forEach(item=>{
-    if(!salesData[item.name]) salesData[item.name]={qty:0,total:0};
-    salesData[item.name].qty+=1;
-    salesData[item.name].total+=item.price;
+function pay(method) {
+  if (cart.length === 0) return alert("Keranjang kosong!");
+
+  if (method === 'QRIS') {
+    // tampilkan QRIS tanpa langsung reset keranjang
+    document.getElementById('qrisContainer').style.display = 'block';
+    alert("Silakan scan QRIS untuk melanjutkan pembayaran.");
+    return; // keluar dulu, jangan langsung reset cart
+  }
+
+  // kalau metode lain (Tunai)
+  cart.forEach(item => {
+    if (!salesData[item.name]) salesData[item.name] = { qty: 0, total: 0 };
+    salesData[item.name].qty += 1;
+    salesData[item.name].total += item.price;
   });
+
   alert(`Transaksi berhasil! Metode: ${method}`);
-  cart=[];
-  total=0;
+
+  cart = [];
+  total = 0;
   updateCart();
   updateDataTable();
+}
+
 }
 
 // Kasir login
@@ -83,14 +96,7 @@ document.getElementById('openDataBtn').addEventListener('click', ()=>{
 function closePanel(id){
   document.getElementById(id).classList.add('hidden');
 }
-function pay(method) {
-  if (method === 'QRIS') {
-    document.getElementById('qrisContainer').style.display = 'block';
-  } else {
-    document.getElementById('qrisContainer').style.display = 'none';
-    alert("Pembayaran dengan " + method + " berhasil!");
-  }
-}
+
 
 
 
