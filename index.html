@@ -85,12 +85,16 @@
       <ul id="cartItems"></ul>
       <p>Total: Rp <span id="total">0</span></p>
     </div>
-           <img src="qris.jpg" alt="QRIS" class="qris-image">
-    <div>
+   
     </div>
       <h4>Metode Pembayaran</h4>
       <button onclick="pay('Tunai')">Tunai</button>
       <button onclick="pay('QRIS')">QRIS</button>
+  <!-- Tambahkan ini -->
+<div id="qrisContainer" style="display:none; margin-top: 15px; text-align:center;">
+  <img src="qris.jpg" alt="QRIS" class="qris-image">
+  <p>Scan QRIS untuk pembayaran</p>
+</div>
     </div>
   </div>
 </div>
