@@ -109,4 +109,9 @@ body{
   border-radius:5px;
   cursor:pointer;
 }
+.qris-image {
+  width: 50%;
+  height: auto;
+}
+
 
