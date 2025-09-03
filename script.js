@@ -83,6 +83,14 @@ document.getElementById('openDataBtn').addEventListener('click', ()=>{
 function closePanel(id){
   document.getElementById(id).classList.add('hidden');
 }
+function pay(method) {
+  if (method === 'QRIS') {
+    document.getElementById('qrisContainer').style.display = 'block';
+  } else {
+    document.getElementById('qrisContainer').style.display = 'none';
+    alert("Pembayaran dengan " + method + " berhasil!");
+  }
+}
 
 
 
