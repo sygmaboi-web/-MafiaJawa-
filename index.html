@@ -1,139 +1,126 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mafia Jawa - Ninefoosion</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mafia Jawa - NineFoosion Expo</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">🍴 Mafia Jawa - Ninefoosion</div>
-      <ul class="nav-links">
-        <li><a href="#" data-target="home">Home</a></li>
-        <li><a href="#" data-target="kasir">Mesin Kasir</a></li>
-        <li><a href="#" data-target="penjualan">Data Penjualan</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Halaman Home -->
-  <section id="home" class="page active">
-    <div class="hero">
-      <img src="poster.jpg" alt="Poster Mafia Jawa" class="hero-img">
-    </div>
-
-    <section class="produk">
-      <h2>❤️ Produk Kami</h2>
-      <div class="produk-grid">
-        <div class="produk-card">
-          <img src="corndogkecil.jpg" alt="Small Boss">
-          <h3>Boss Dog</h3>
-          <p>Harga: Rp5.000</p>
-          <p>Corndog renyah, kriuk di luar lembut di dalam.</p>
-        </div>
-
-  
-
-    
-        <div class="produk-card">
-          <img src="cilok.png" alt="Chiseruan">
-          <h3>Cilok</h3>
-          <p>Harga: Rp5.000</p>
-          <p>Pentol kenyal dengan campuran bumbu kacang yang gurih</p>
-        </div>
-
-    
-        
-        <div class="produk-card">
-          <img src="puding.png" alt="Chiseruan">
-          <h3>Puding</h3>
-          <p>Harga: Rp3.000</p>
-          <p>Puding lembut dengan siraman fla yang manis</p>
-        </div>
-
-        <div class="produk-card">
-          <img src="redpoison.jpg" alt="Red Poison">
-          <h3>Red Poison</h3>
-          <p>Harga: Rp4.000</p>
-          <p>Minuman bersoda merah dengan resep rahasia ✨</p>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <!-- Halaman Kasir -->
- <section id="kasir" class="page">
-  <h2>🛒 Mesin Kasir</h2>
-  <form id="kasirForm">
-    <div class="produk-kasir-grid">
-      <!-- Small Boss -->
-      <div class="produk-kasir-card">
-        <h3>Corn Dog - Rp 5.000</h3>
-        <label><input type="checkbox" name="produk" value="Corn Dog-5000"> Pilih</label>
-        <input type="number" name="qty-Small Boss" value="1" min="1">
-      </div>
-
-      <!-- Big Boss -->
-      <div class="produk-kasir-card">
-        <h3>Pentol - Rp 5.000</h3>
-        <label><input type="checkbox" name="produk" value="Pentol-5000"> Pilih</label>
-        <input type="number" name="qty-Big Boss" value="1" min="1">
-      </div>
-
-      <!-- Chiseruan -->
-      <div class="produk-kasir-card">
-        <h3>Puding  - Rp 3.000</h3>
-        <label><input type="checkbox" name="produk" value="Puding-3000"> Pilih</label>
-        <input type="number" name="qty-Chiseruan" value="1" min="1">
-      </div>
-
- 
-
-      <!-- Red Poison -->
-      <div class="produk-kasir-card">
-        <h3>Red Poison - Rp 4.000</h3>
-        <label><input type="checkbox" name="produk" value="Red Poison-4000"> Pilih</label>
-        <input type="number" name="qty-Red Poison" value="1" min="1">
-      </div>
-    </div>
-
-    <br>
-    <label>Metode Pembayaran:</label><br>
-    <select id="pembayaran">
-      <option value="Cash">Cash</option>
-      <option value="QRIS">QRIS</option>
-    </select>
-    <br><br>
-
-    <div id="qrisDiv" style="display:none;">
-      <p>Scan QRIS berikut:</p>
-      <img src="qris.jpg" alt="QRIS" class="qris-img">
-    </div>
-
-    <button type="submit">Checkout</button>
-  </form>
+<!-- Landing Page -->
+<section class="landing">
+  <h1>Mafia Jawa - NineFoosion Expo</h1>
+  <p>Selamat datang! Nikmati jajanan favoritmu ala Mafia Jawa!</p>
 </section>
 
+<!-- Menu Produk -->
+<section class="menu">
+  <h2>Menu Kami</h2>
+  <div class="products">
+    <div class="product">
+      <img src="bossdog.png" alt="Boss Dog">
+      <h3>Boss Dog</h3>
+      <p>Rp 5.000</p>
+    </div>
+    <div class="product">
+      <img src="puding.png" alt="Pudding">
+      <h3>Pudding</h3>
+      <p>Rp 3.000</p>
+    </div>
+    <div class="product">
+      <img src="cilok.png" alt="Cilok">
+      <h3>Cilok</h3>
+      <p>Rp 5.000</p>
+    </div>
+    <div class="product">
+      <img src="redpoison.png" alt="Red Poison">
+      <h3>Red Poison</h3>
+      <p>Rp 5.000</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Halaman Penjualan -->
-  <section id="penjualan" class="page">
-    <h2>📊 History Penjualan</h2>
-    <ul id="historyList"></ul>
-    <div id="summary"></div>
-  </section>
+<!-- Floating Buttons Kasir & Data Penjualan -->
+<div class="floating-buttons">
+  <button id="openKasirBtn">Kasir</button>
+  <button id="openDataBtn">Data Penjualan</button>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Mafia Jawa - Ninefoosion | Market Day SMP Islam Plus Baitulmaal</p>
-    <p>Pemesanan & Info: Rahman 085282064128 | Vino 081387066045</p>
-    <p>Made by @alvino_daris</p>
+<!-- Mesin Kasir -->
+<div id="kasirContent" class="floating-panel hidden">
+  <div class="panel-header">
+    <h3>Mesin Kasir</h3>
+    <button onclick="closePanel('kasirContent')">✖</button>
+  </div>
+  <div class="login">
+    <input type="password" id="password" placeholder="Masukkan password">
+    <button id="loginBtn">Login</button>
+  </div>
+  <div id="kasirPanel" class="hidden">
+    <div class="products">
+      <div class="product">
+        <h3>Boss Dog</h3>
+        <button onclick="addItem('Boss Dog', 5000)">Tambah</button>
+      </div>
+      <div class="product">
+        <h3>Pudding</h3>
+        <button onclick="addItem('Pudding', 3000)">Tambah</button>
+      </div>
+      <div class="product">
+        <h3>Cilok</h3>
+        <button onclick="addItem('Cilok', 5000)">Tambah</button>
+      </div>
+      <div class="product">
+        <h3>Red Poison</h3>
+        <button onclick="addItem('Red Poison', 5000)">Tambah</button>
+      </div>
+    </div>
+    <div class="cart">
+      <h3>Keranjang</h3>
+      <ul id="cartItems"></ul>
+      <p>Total: Rp <span id="total">0</span></p>
+    </div>
+            <img src="redpoison.png" alt="Red Poison">
+    <div>
+    </div>
+      <h4>Metode Pembayaran</h4>
+      <button onclick="pay('Tunai')">Tunai</button>
+      <button onclick="pay('QRIS')">QRIS</button>
+    </div>
+  </div>
+</div>
+
+<!-- Data Penjualan -->
+<div id="dataContent" class="floating-panel hidden">
+  <div class="panel-header">
+    <h3>Data Penjualan</h3>
+    <button onclick="closePanel('dataContent')">✖</button>
+  </div>
+  <div id="loginData">
+    <input type="password" id="passwordData" placeholder="Masukkan password">
+    <button id="loginDataBtn">Login</button>
+  </div>
+  <div id="dataPanel" class="hidden">
+    <table>
+      <thead>
+        <tr>
+          <th>Produk</th>
+          <th>Jumlah Terjual</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="dataTable"></tbody>
+    </table>
+    <button onclick="clearData()">Hapus History</button>
+  </div>
+</div>
+  <footer><p> Mafia Jawa - Ninefoosion Expo</p>
+    <p>made by @alvino_daris</p>
+    
   </footer>
 
-  <script src="script.js"></script>
-  <link rel="stylesheet" href="style.css">
-
+<script src="script.js"></script>
 </body>
 </html>
+
