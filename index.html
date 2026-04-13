@@ -1,169 +1,172 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mafia Jawa - NineFoosion Expo</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mafia Jawa - NineFoosion Expo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Landing Page -->
-<section class="landing">
-  <h1>Mafia Jawa - NineFoosion Expo</h1>
-  <p>Selamat datang! Nikmati jajaanan enak ala Mafia Jawa!</p>
-</section>
-
-<!-- Menu Produk -->
-<section class="menu">
-  <h2>Menu Kami</h2>
-  <div class="products">
-    <div class="product">
-      <img src="corndogkecil.jpg" alt="Boss Dog">
-      <h3>Boss Dog</h3>
-      <p>Rp 5.000</p>
-       <p class="description">Corndog renyah dengan lapisan luar yang garing dan isi sosis yang lezat, cocok untuk camilan cepat dan mengenyangkan.</p>
+  <section class="landing">
+    <div class="landing-content">
+      <h1>Mafia Jawa</h1>
+      <p class="subtitle">NineFoosion Expo</p>
+      <p>Selamat datang! Nikmati jajanan enak ala Mafia Jawa yang tak tertandingi.</p>
     </div>
-    <div class="product">
-      <img src="puding.png" alt="Pudding">
-      <h3>Pudding</h3>
-      <p>Rp 3.000</p>
-      <p class="description"> Pudding lembut dengan dengan fla yang manis, memberikan sensasi creamy yang menyenangkan di setiap sendoknya. </p>
+  </section>
+
+  <section class="menu">
+    <div class="section-header">
+      <h2>Menu Eksekutif Kami</h2>
+      <div class="divider"></div>
     </div>
-    <div class="product">
-      <img src="cilok.png" alt="Cilok">
-      <h3>Cilok</h3>
-      <p>Rp 5.000</p>
-       <p class="description">Cilok kenyal khas Indonesia, disajikan dengan bumbu kacang gurih yang membuatnya semakin nikmat..</p>
-    </div>
-    <div class="product">
-      <img src="redpoison.jpg" alt="Red Poison">
-      <h3>Red Poison</h3>
-      <p>Rp 5.000</p>
-           <p class="description">Minuman merah segar dengan rasa rahasia yang unik, menyegarkan tenggorokan dan cocok untuk menemani camilan.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Floating Buttons Kasir & Data Penjualan -->
-<div class="floating-buttons">
-  <button id="openKasirBtn">Kasir</button>
-  <button id="openDataBtn">Data Penjualan</button>
-</div>
-
-<!-- Mesin Kasir -->
-<div id="kasirContent" class="floating-panel hidden">
-  <div class="panel-header">
-    <h3>Mesin Kasir</h3>
-    <button onclick="closePanel('kasirContent')">✖</button>
-  </div>
-  <div class="login">
-    <input type="password" id="password" placeholder="Masukkan password">
-    <button id="loginBtn">Login</button>
-  </div>
-  <div id="kasirPanel" class="hidden">
-    <div class="products">
-      <div class="product">
-        <h3>Boss Dog</h3>
-        <button onclick="addItem('Boss Dog', 5000)">Tambah</button>
-      </div>
-      <div class="product">
-        <h3>Pudding</h3>
-        <button onclick="addItem('Pudding', 3000)">Tambah</button>
-      </div>
-      <div class="product">
-        <h3>Cilok</h3>
-        <button onclick="addItem('Cilok', 5000)">Tambah</button>
-      </div>
-      <div class="product">
-        <h3>Red Poison</h3>
-        <button onclick="addItem('Red Poison', 5000)">Tambah</button>
-      </div>
-    </div>
-    <div class="cart">
-      <h3>Keranjang</h3>
-      <ul id="cartItems"></ul>
-      <p>Total: Rp <span id="total">0</span></p>
-    </div>
-   
-    </div>
-      <h4>Metode Pembayaran</h4>
-      <button onclick="pay('Tunai')">Tunai</button>
-      <button onclick="pay('QRIS')">QRIS</button>
-  <!-- Tambahkan ini -->
-<div id="qrisContainer" style="display:none; margin-top: 15px; text-align:center;">
-  <img src="qris.jpg" alt="QRIS" class="qris-image">
-  <p>Scan QRIS untuk pembayaran</p>
-  <button onclick="confirmQrisPayment()">Konfirmasi Pembayaran</button>
-</div>
-    </div>
-  </div>
-</div>
-
-<!-- Data Penjualan -->
-<div id="dataContent" class="floating-panel hidden">
-  <div class="panel-header">
-    <h3>Data Penjualan</h3>
-    <button onclick="closePanel('dataContent')">✖</button>
-  </div>
-  <div id="loginData">
-    <input type="password" id="passwordData" placeholder="Masukkan password">
-    <button id="loginDataBtn">Login</button>
-  </div>
-  <div id="dataPanel" class="hidden">
-    <table id="tabel-penjualan">
-      <thead>
-        <tr>
-          <th>Produk</th>
-          <th>Jumlah Terjual</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="dataTable"></tbody>
-    </table>
-    <button onclick="clearData()">Hapus History</button>
-    <!-- ✅ Tambahin tombol download -->
-    <button onclick="downloadCSV()">Download CSV</button>
-  </div>
-</div>
-
-<footer>
-  <p>Mafia Jawa - Ninefoosion Expo</p>
-  <p>made by @alvino_daris</p>
-</footer>
-
-<script src="script.js"></script>
-
-<!-- ✅ Script export CSV -->
-<script>
-function downloadCSV() {
-  const table = document.querySelector("#tabel-penjualan");
-  let rows = [];
-
-  for (let row of table.rows) {
-    let cols = [];
-    for (let cell of row.cells) {
-      // Escape tanda koma biar gak rusak CSV
-      cols.push('"' + cell.innerText.replace(/"/g, '""') + '"');
-    }
-    rows.push(cols.join(","));
-  }
-
-  let csvContent = rows.join("\n");
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "data_penjualan.csv";
-  link.click();
-}
-
-</div>
-  <footer><p> Mafia Jawa - Ninefoosion Expo</p>
-    <p>made by @alvino_daris</p>
     
+    <div class="products">
+      <div class="product-card">
+        <div class="img-wrapper"><img src="corndogkecil.jpg" alt="Boss Dog"></div>
+        <div class="product-info">
+          <h3>Boss Dog</h3>
+          <p class="price">Rp 5.000</p>
+          <p class="description">Corndog renyah dengan lapisan luar garing dan isi sosis lezat. Camilan cepat & mengenyangkan.</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="img-wrapper"><img src="puding.png" alt="Pudding"></div>
+        <div class="product-info">
+          <h3>Pudding</h3>
+          <p class="price">Rp 3.000</p>
+          <p class="description">Pudding lembut dengan fla manis, memberikan sensasi creamy menyenangkan di setiap sendokan.</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="img-wrapper"><img src="cilok.png" alt="Cilok"></div>
+        <div class="product-info">
+          <h3>Cilok</h3>
+          <p class="price">Rp 5.000</p>
+          <p class="description">Cilok kenyal khas Nusantara, disajikan dengan bumbu kacang gurih rahasia keluarga.</p>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="img-wrapper"><img src="redpoison.jpg" alt="Red Poison"></div>
+        <div class="product-info">
+          <h3>Red Poison</h3>
+          <p class="price">Rp 5.000</p>
+          <p class="description">Minuman merah segar dengan resep rahasia yang unik, menyegarkan tenggorokan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="floating-buttons">
+    <button id="openKasirBtn" class="btn-float"><span class="icon">🛒</span> Kasir</button>
+    <button id="openDataBtn" class="btn-float"><span class="icon">📊</span> Data Penjualan</button>
+  </div>
+
+  <div id="kasirContent" class="floating-panel hidden">
+    <div class="panel-header">
+      <h3>Mesin Kasir</h3>
+      <button class="close-btn" onclick="closePanel('kasirContent')">✖</button>
+    </div>
+    
+    <div class="login">
+      <p>Otorisasi Diperlukan</p>
+      <input type="password" id="password" placeholder="Masukkan PIN Kasir">
+      <button id="loginBtn" class="btn-primary">Login</button>
+    </div>
+    
+    <div id="kasirPanel" class="hidden">
+      <div class="kasir-items">
+        <div class="kasir-item"><span>Boss Dog</span> <button onclick="addItem('Boss Dog', 5000)">+ Tambah</button></div>
+        <div class="kasir-item"><span>Pudding</span> <button onclick="addItem('Pudding', 3000)">+ Tambah</button></div>
+        <div class="kasir-item"><span>Cilok</span> <button onclick="addItem('Cilok', 5000)">+ Tambah</button></div>
+        <div class="kasir-item"><span>Red Poison</span> <button onclick="addItem('Red Poison', 5000)">+ Tambah</button></div>
+      </div>
+      
+      <div class="cart">
+        <h4>Keranjang:</h4>
+        <ul id="cartItems"></ul>
+        <div class="total-box">Total: Rp <span id="total">0</span></div>
+      </div>
+     
+      <div class="payment-section">
+        <h4>Metode Pembayaran</h4>
+        <div class="pay-buttons">
+          <button class="btn-pay" onclick="pay('Tunai')">💵 Tunai</button>
+          <button class="btn-pay" onclick="pay('QRIS')">📱 QRIS</button>
+        </div>
+        
+        <div id="qrisContainer" style="display:none; margin-top: 15px; text-align:center;">
+          <img src="qris.jpg" alt="QRIS" class="qris-image">
+          <p class="qris-text">Scan QRIS untuk pembayaran</p>
+          <button class="btn-primary" onclick="confirmQrisPayment()">Konfirmasi Selesai</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dataContent" class="floating-panel hidden">
+    <div class="panel-header">
+      <h3>Data Penjualan</h3>
+      <button class="close-btn" onclick="closePanel('dataContent')">✖</button>
+    </div>
+    
+    <div id="loginData">
+      <p>Otorisasi Diperlukan</p>
+      <input type="password" id="passwordData" placeholder="Masukkan PIN Admin">
+      <button id="loginDataBtn" class="btn-primary">Login</button>
+    </div>
+    
+    <div id="dataPanel" class="hidden">
+      <div class="table-container">
+        <table id="tabel-penjualan">
+          <thead>
+            <tr>
+              <th>Produk</th>
+              <th>Terjual</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="dataTable"></tbody>
+        </table>
+      </div>
+      <div class="data-actions">
+        <button class="btn-danger" onclick="clearData()">Hapus Data</button>
+        <button class="btn-success" onclick="downloadCSV()">⬇️ Export CSV</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><strong>Mafia Jawa</strong> - Ninefoosion Expo</p>
+    <p class="author">made by @alvino_daris</p>
   </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Script Export CSV yang sudah ditutup dengan benar
+    function downloadCSV() {
+      const table = document.querySelector("#tabel-penjualan");
+      let rows = [];
+
+      for (let row of table.rows) {
+        let cols = [];
+        for (let cell of row.cells) {
+          cols.push('"' + cell.innerText.replace(/"/g, '""') + '"');
+        }
+        rows.push(cols.join(","));
+      }
+
+      let csvContent = rows.join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "data_penjualan_mafia_jawa.csv";
+      link.click();
+    }
+  </script>
 </body>
 </html>
-
