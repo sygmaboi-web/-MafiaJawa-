@@ -1,134 +1,131 @@
-let cart = [];
-let total = 0;
-let salesData = {};
+// ==========================================
+// 1. LOGIC BUKA/TUTUP PANEL (POPUP)
+// ==========================================
+function openPanel(panelId) {
+    document.getElementById(panelId).classList.remove('hidden');
+}
 
-// --------------------
-// KERANJANG
-// --------------------
+function closePanel(panelId) {
+    document.getElementById(panelId).classList.add('hidden');
+}
+
+document.getElementById('openKasirBtn').addEventListener('click', () => openPanel('kasirContent'));
+document.getElementById('openDataBtn').addEventListener('click', () => openPanel('dataContent'));
+
+
+// ==========================================
+// 2. LOGIC LOGIN (MENGUNCI MENU)
+// ==========================================
+// Login Kasir
+document.getElementById('loginBtn').addEventListener('click', function() {
+    const pin = document.getElementById('password').value;
+    
+    // Default PIN kasir adalah '1234'. Silakan diganti sesuai kebutuhan.
+    if(pin === '1234') { 
+        document.querySelector('#kasirContent .login').classList.add('hidden'); // Sembunyikan form login
+        document.getElementById('kasirPanel').classList.remove('hidden'); // Tampilkan menu kasir
+    } else {
+        alert('PIN Kasir Salah! Akses Ditolak.');
+    }
+});
+
+// Login Data Penjualan
+document.getElementById('loginDataBtn').addEventListener('click', function() {
+    const pin = document.getElementById('passwordData').value;
+    
+    // Default PIN admin adalah 'admin'.
+    if(pin === 'admin') { 
+        document.getElementById('loginData').classList.add('hidden');
+        document.getElementById('dataPanel').classList.remove('hidden');
+    } else {
+        alert('PIN Admin Salah! Akses Ditolak.');
+    }
+});
+
+
+// ==========================================
+// 3. LOGIC KERANJANG (TAMBAH & KURANGI)
+// ==========================================
+let cart = []; // Array untuk menyimpan pesanan
+
 function addItem(name, price) {
-  cart.push({ name, price });
-  total += price;
-  updateCart();
+    // Cek apakah item sudah ada di keranjang
+    const existingItem = cart.find(item => item.name === name);
+    
+    if(existingItem) {
+        existingItem.qty += 1; // Jika ada, tambah jumlahnya
+    } else {
+        cart.push({ name: name, price: price, qty: 1 }); // Jika tidak, masukkan sebagai item baru
+    }
+    updateCartUI();
 }
 
-function updateCart() {
-  const cartItems = document.getElementById('cartItems');
-  cartItems.innerHTML = '';
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.name} - Rp ${item.price}`;
-    cartItems.appendChild(li);
-  });
-  document.getElementById('total').textContent = total;
+function removeItem(name) {
+    // Cari item yang mau dikurangi
+    const existingItem = cart.find(item => item.name === name);
+    
+    if(existingItem) {
+        existingItem.qty -= 1; // Kurangi jumlahnya
+        // Jika jumlahnya jadi 0, hapus dari keranjang sepenuhnya
+        if(existingItem.qty <= 0) {
+            cart = cart.filter(item => item.name !== name);
+        }
+    }
+    updateCartUI();
 }
 
-// --------------------
-// PEMBAYARAN
-// --------------------
+function updateCartUI() {
+    const cartList = document.getElementById('cartItems');
+    const totalSpan = document.getElementById('total');
+    
+    cartList.innerHTML = ''; // Bersihkan list sebelum dirender ulang
+    let total = 0;
+
+    cart.forEach(item => {
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+
+        // Buat elemen list baru dengan tombol Kurangi
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        li.innerHTML = `
+            <span><strong>${item.name}</strong> (x${item.qty}) - Rp ${subtotal}</span>
+            <button class="btn-remove" onclick="removeItem('${item.name}')">✖ Kurangi</button>
+        `;
+        cartList.appendChild(li);
+    });
+
+    totalSpan.innerText = total; // Update total harga
+}
+
+
+// ==========================================
+// 4. LOGIC PEMBAYARAN
+// ==========================================
 function pay(method) {
-  if (cart.length === 0) return alert("Keranjang kosong!");
-
-  if (method === 'QRIS') {
-    // tampilkan QRIS tanpa langsung reset keranjang
-    document.getElementById('qrisContainer').style.display = 'block';
-    alert("Silakan scan QRIS untuk melanjutkan pembayaran.");
-    return; // keluar dulu, tunggu konfirmasi
-  }
-
-  // kalau metode lain (Tunai)
-  cart.forEach(item => {
-    if (!salesData[item.name]) salesData[item.name] = { qty: 0, total: 0 };
-    salesData[item.name].qty += 1;
-    salesData[item.name].total += item.price;
-  });
-
-  alert(`Transaksi berhasil! Metode: ${method}`);
-
-  cart = [];
-  total = 0;
-  updateCart();
-  updateDataTable();
+    if(cart.length === 0) {
+        alert('Keranjang masih kosong, Bos!');
+        return;
+    }
+    
+    if(method === 'QRIS') {
+        document.getElementById('qrisContainer').style.display = 'block';
+    } else {
+        prosesPembayaran('Tunai');
+    }
 }
 
 function confirmQrisPayment() {
-  cart.forEach(item => {
-    if (!salesData[item.name]) salesData[item.name] = { qty: 0, total: 0 };
-    salesData[item.name].qty += 1;
-    salesData[item.name].total += item.price;
-  });
-
-  alert("Pembayaran QRIS berhasil!");
-
-  cart = [];
-  total = 0;
-  updateCart();
-  updateDataTable();
-
-  // sembunyikan QRIS lagi
-  document.getElementById('qrisContainer').style.display = 'none';
+    prosesPembayaran('QRIS');
+    document.getElementById('qrisContainer').style.display = 'none';
 }
 
-// --------------------
-// LOGIN KASIR
-// --------------------
-document.getElementById('loginBtn').addEventListener('click', () => {
-  const pass = document.getElementById('password').value;
-  if (pass === "KELOMPOK1KEREN") {
-    document.getElementById('kasirPanel').classList.remove('hidden');
-    document.querySelector('#kasirContent .login').classList.add('hidden');
-  } else {
-    alert("Password salah!");
-  }
-});
+function prosesPembayaran(metode) {
+    alert(`Pembayaran menggunakan ${metode} berhasil! Total yang dibayar: Rp ${document.getElementById('total').innerText}`);
+    
+    // (Opsional) Nanti di sini bisa ditambahkan kode untuk push data ke Tabel Penjualan
 
-// --------------------
-// LOGIN DATA PENJUALAN
-// --------------------
-document.getElementById('loginDataBtn').addEventListener('click', () => {
-  const pass = document.getElementById('passwordData').value;
-  if (pass === "KELOMPOK1KEREN") {
-    document.getElementById('dataPanel').classList.remove('hidden');
-    document.getElementById('loginData').classList.add('hidden');
-    updateDataTable();
-  } else {
-    alert("Password salah!");
-  }
-});
-
-// --------------------
-// DATA PENJUALAN
-// --------------------
-function updateDataTable() {
-  const tbody = document.getElementById('dataTable');
-  tbody.innerHTML = '';
-  for (let product in salesData) {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${product}</td><td>${salesData[product].qty}</td><td>Rp ${salesData[product].total}</td>`;
-    tbody.appendChild(tr);
-  }
+    // Reset keranjang setelah dibayar
+    cart = [];
+    updateCartUI();
 }
-
-function clearData() {
-  if (confirm("Hapus semua history penjualan?")) {
-    salesData = {};
-    updateDataTable();
-  }
-}
-
-// --------------------
-// FLOATING PANEL CONTROLS
-// --------------------
-document.getElementById('openKasirBtn').addEventListener('click', () => {
-  document.getElementById('kasirContent').classList.remove('hidden');
-});
-document.getElementById('openDataBtn').addEventListener('click', () => {
-  document.getElementById('dataContent').classList.remove('hidden');
-});
-function closePanel(id) {
-  document.getElementById(id).classList.add('hidden');
-}
-
-
-
-
-
